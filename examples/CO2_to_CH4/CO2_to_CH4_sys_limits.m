@@ -138,7 +138,7 @@ nys_tnr=30; %number of points in computed polars
 chis_FPR_TNR=linspace(.34,1,nchis_tnr); %chi values
 omegas_FPR_TNR=zeros(1,nchis_tnr);%pre-allocated omega array
 Msj=0; %j-wave Mach initialization
-fpr_tnr_boundary_precision=.01; %dichotomy terminatin threshold
+fpr_tnr_boundary_precision=.01; %dichotomy termination threshold
 for i=1:nchis_tnr
     solve_Msj_eq=true;
     omega_inf_tnr=0;omega_sup_tnr=90;

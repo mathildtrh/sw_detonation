@@ -1,16 +1,16 @@
 function val=rrrToRreBoundary(xi,omega_rad,gamma_I,gamma_II,mu_I,mu_II)
-%Computes RRE<->RRR boundary function, equals zeros at bounday
+%Computes RRE<->RRR boundary function, equals zeros at boundary
 %Inputs:
   %xi: incident pressure jump
   %omega_rad: interface inclination in radian
   %gamma_I, gamma_II: ratios of specific heats for each phase
   %mu_I, mu_II: molecular weighs of each phase
 %Outputs:
-  %val: value of boundary function, is zeros ar boundary
+  %val: value of boundary function, is zeros at boundary
 
 Msh=sqrt(xiToSqMach(xi,gamma_I,pi/2)); %incident shock Mach
 Mi=Msh/sin(omega_rad); %free-stream Mach
-Mt=Mi*sqrt((gamma_I*mu_II)/(gamma_II*mu_I));
+Mt=Mi*sqrt((gamma_I*mu_II)/(gamma_II*mu_I)); %transmitted shock Mach
 val=(1+gamma_I*Mi^2-xi)^2*((gamma_I-1)/(gamma_I+1)+xi)/...
     ((2*gamma_I)/(gamma_I+1)*Mi^2-(gamma_I-1)/(gamma_I+1)-xi)...
     -(1+gamma_II*Mt^2-xi)^2*((gamma_II-1)/(gamma_II+1)+xi)/...

@@ -9,7 +9,7 @@ function is_sf_RR=isBeforeSfRRRToBPR(xi,omega_rad,gamma_I,gamma_II,mu_I,...
       %gamma_I, gamma_II: ratios of specific heats for each phase
       %mu_I, mu_II: molecular weighs of each phase
       %ny: number of points on xi axis when computing polars
-    temp_ratio=1;
+    temp_ratio=1; %temperature ratio between the two phases
     if nargin==8
         temp_ratio=varargin{1};
     end

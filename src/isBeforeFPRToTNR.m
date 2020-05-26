@@ -7,7 +7,7 @@ function [before_transition,Msj,Mst,Msi]=isBeforeFPRToTNR(xi_i,omega_rad,gamma_I
         %gamma_I, gamma_II: ratios of constant heat
         %mus: molecular masses
         %ny: xi-axis resolution when getting polars
-        %vargain{1}, solve_Msj_eq: bool determining if Msj 
+        %vargarin{1}, solve_Msj_eq: bool determining if Msj 
             %... equation needs to be solved or not, used to reduce...
             %... computation time
         %varargin{2}, Msj: Msj value, used if solve_Msj_eq==false

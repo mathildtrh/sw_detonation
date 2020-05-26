@@ -192,5 +192,6 @@ xlim([15,90])
 hold off
 
 function val=xiToMach(xi)
+    gamma_I=1.4016;
     val=sqrt(xiToSqMach(xi,gamma_I,pi/2));
 end
