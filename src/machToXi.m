@@ -3,7 +3,7 @@ function xi=machToXi(Mach,gamma,phi)
     %Inputs:
         %Mach: Mach number of oblique shock
         %gamma: ratio of constant heat
-        %mu: molecular mass
+        % phi: shock - pre-shock flow angle 
     xi=((1-gamma)+2*gamma*(Mach*sin(phi))^2)/(1+gamma); %...
         %... transmitted pressure jump
 end

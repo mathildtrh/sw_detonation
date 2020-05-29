@@ -6,6 +6,7 @@ function [xi,delta,ind]=...
     %mode: two possible values
         %0: gets corresponding point for a xi coordinate
         %1: same but for delta
+    %coordinate: value of the wanted point
     %Optional arguments (varargin):
         %is_expansion: true if the the wave is an expansion...
             %... changes the number possible corresponding points

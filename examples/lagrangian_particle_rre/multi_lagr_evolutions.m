@@ -3,10 +3,11 @@
 clear all
 close all
 
-mode = 2;
+mode = 1;
 X = [0.5, 1, 1.5]*1e-2;
 Y = [3, 5, 8]*1e-2;
 colors = ["b","r","g"];
+filenames = ["blue_pres.csv", "red_pres.csv", "green_pres.csv","blue_temp.csv", "red_temp.csv", "green_temp.csv","blue_vol.csv", "red_vol.csv", "green_vol.csv"];
 
 blue = strcat("X = ", num2str(X(1)), ", Y = ", num2str(Y(1)));
 red = strcat("X = ", num2str(X(2)), ", Y = ", num2str(Y(2)));
@@ -45,4 +46,8 @@ for i = 1:3
     legend(legends,'Location','southeast')
     
     hold on
+    
+    csvwrite(filenames(i),cat(2,t.',P.'));
+    csvwrite(filenames(3+i),cat(2,t.',T.'));
+    csvwrite(filenames(6+i),cat(2,t.',V.'));
 end

@@ -1,5 +1,5 @@
 function xi_at_max_def=xiDeltaMax(M1,gamma)
-%calcultes xi for maximum delfection angle at given Mach
+%calcultes xi for maximum deflection angle at given Mach
 %Inputs:
     %M1: pre-shock Mach
     %gamma: ratio of specific heats

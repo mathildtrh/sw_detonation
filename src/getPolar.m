@@ -1,10 +1,12 @@
 function [xis,deltas]=getPolar(M1,gamma,ny,varargin)
 %Computes shock polar
 %Inputs:
+    %M1: pre-shock Mach
+    %gamma: ratio of specific heat
     %ny: number of values on y-axis
     %mode: first varargin
         %There are multiple modes for the function:
-            %0, default: calcultes usual, polar
+            %0, default: calcultes usual polar
             %1: choosing xi_lim, instead of taking the usual maximum xi...
                 %... for y-axis boundary
                 %xi_lim=varargin{2}: new xi limit
@@ -20,7 +22,8 @@ function [xis,deltas]=getPolar(M1,gamma,ny,varargin)
 %Outputs:
     %xis: xi-coordinates of polar points
     %deltas: delta-coordinates of polar points (radian)
-xi_lim=xiLim(M1,gamma); %max value of xi in shock polar
+
+    xi_lim=xiLim(M1,gamma); %max value of xi in shock polar
 
 %identifying mode
 mode=0;
