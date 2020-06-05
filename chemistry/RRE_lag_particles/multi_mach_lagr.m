@@ -38,8 +38,8 @@ for j=1:nM
         [t, V, P1, T1] = particle_rre(mode, X(i), Y(i),mach_numbers(j));
         "Done"
         file = fopen(filenames(nP*(j-1)+i),'w');
-        fprintf(file, '%1.2E %1.5f\n', cat(1,t(1:end-1),V(1:end-1)));
-        fprintf(file, '%1.2E %1.5f', t(end),V(end));
+        fprintf(file, '%1.4E   %1.5f\n', cat(1,t(1:end-1),V(1:end-1)));
+        fprintf(file, '%1.4E   %1.5f', t(end),V(end));
         fclose(file);
         file2 = fopen(senknames(nP*(j-1)+i),'w');
         fprintf(file2, '%s\n', 'VTIM');

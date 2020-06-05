@@ -141,32 +141,6 @@ function [ts, Vms, P_as, T_as]= particle_rre(mode, x, y, mach)
             tsexp(i)=tsexp(i-1)+tsexp(i);
         end
 
-%         %% Beginning right after incident shock
-%         
-%         %construction of time array
-%         %Chemkin needs time to start after the incident shock
-%         
-%         refr_dur=experiment_dim/(Msh*sqrt(gamma_I*R_I*T0_I)); 
-% 
-%         % t_1 time spent between the incident shock and the expansion        
-%         t_after=tsexp(end)+refr_dur;
-%         
-%         n_s = round(t_1/3e-9);
-%         n_t = round(refr_dur/3e-9);
-%         ts=zeros(1,n_s+no_dev_pts+n_t);
-% 
-%         ts(1:n_s) = linspace(0,t_1,n_s);
-%         ts(1+n_s:no_dev_pts+n_s)=tsexp;
-%         ts(1+n_s+no_dev_pts:n_t+no_dev_pts+n_s)=linspace(ts(n_s+no_dev_pts),t_after,n_t);
-% 
-%         % construction of specific volume array
-%         Vms=zeros(1,no_dev_pts+n_s+n_t);
-%         Vms(1:n_s)=Vm0_I*spec_vol_jump;
-%         Vms(1+n_s:no_dev_pts+n_s)= Vmexps;
-%         Vms(1+no_dev_pts+n_s:no_dev_pts+n_t+n_s) = Vm_post_exp;
-        
-        %% Beginning right before expansion
-        
         %construction of time array
         %Chemkin needs time to start after the incident shock
         
@@ -175,20 +149,20 @@ function [ts, Vms, P_as, T_as]= particle_rre(mode, x, y, mach)
         % t_1 time spent between the incident shock and the expansion        
         t_after=tsexp(end)+refr_dur;
         
-        n_t = round(refr_dur/3e-9);
-        ts=zeros(1,1+no_dev_pts+n_t);
+        n_t = round(refr_dur/1e-6);
+        ts=zeros(1,no_dev_pts+1+n_t);
 
         ts(1) = 0;
-        ts(2:no_dev_pts+1)=tsexp;
-        ts(2+no_dev_pts:n_t+no_dev_pts+1)=linspace(ts(no_dev_pts),t_after,n_t);
+        ts(2:1+no_dev_pts)=tsexp;
+        ts(2+no_dev_pts:1+n_t+no_dev_pts)=linspace(ts(1+no_dev_pts),t_after,n_t);
 
         % construction of specific volume array
-        Vms=zeros(1,1+no_dev_pts+n_t);
-        Vms(1)=Vm0_I*spec_vol_jump;
-        Vms(2:no_dev_pts+1)= Vmexps;
-        Vms(no_dev_pts+2:no_dev_pts+n_t+1) = Vm_post_exp;
+        Vms=zeros(1,no_dev_pts+1+n_t);
+        Vms(1)= Vm0_I*spec_vol_jump;
+        Vms(2:1+no_dev_pts)= Vmexps;
+        Vms(1+no_dev_pts+1:n_s+no_dev_pts+n_t) = Vm_post_exp;
         
-        
+
         if ~(length(ts) == length(Vms))
             "PB DE DIMENSION"
         end
