@@ -10,12 +10,13 @@
     mu_II=4;
     %Universal gas constant (kg.mol^-1.K^-1)
     R_u=8.314;
-    %Phase I gas constant
+    %Gas constants
     R_I=R_u/(mu_I*10^-3);
- 
+    R_II=R_u/(mu_II*10^-3);
+    
 %Experimental conditions:
     %Angle of incidence:
-    omega_deg=25;
+    omega_deg=18;
     omega_rad=omega_deg*pi/180;
     %Incident wave pressure jump
         %Cond Remy
@@ -34,3 +35,7 @@
     Vm0_I=R_I*T0_I/P0;
     %distance of shock to interface at t=0 (m):
     experiment_dim=1e-2;
+    
+    %Speed of sound
+    a0_I=sqrt(gamma_I*R_I*T0_I);
+    a0_II=sqrt(gamma_II*R_II*T0_II);

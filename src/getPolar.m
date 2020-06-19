@@ -6,7 +6,7 @@ function [xis,deltas]=getPolar(M1,gamma,ny,varargin)
     %ny: number of values on y-axis
     %mode: first varargin
         %There are multiple modes for the function:
-            %0, default: calcultes usual polar
+            %0, default: calculates usual polar
             %1: choosing xi_lim, instead of taking the usual maximum xi...
                 %... for y-axis boundary
                 %xi_lim=varargin{2}: new xi limit

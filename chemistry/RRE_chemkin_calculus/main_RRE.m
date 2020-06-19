@@ -19,15 +19,10 @@ mode = 1; %H2_O2 - He interface
 XH2=0.6667;
 XO2=0.3333;
 
-mach_numbers = 3;
-
-% X = [-0.9, 0.5, 1, 1.5, -0.5];
-% Y = [3, 3, 7, 11, 12];
-% X = [0.5, 1, 1.5];
-% Y = [3, 5, 8];
-
-X = 0.5;
-Y = 3;
+%mach_numbers = linspace(2,6);
+mach_numbers = [2 2.5 3 3.2 3.3 6 9];
+X = [0.5, 1.5, 0.5, 3, 0.5, 4];
+Y = [2, 5.5, 7.5, 10, 12, 13.5];
 
 nM = length(mach_numbers);
 nP = length(X);
@@ -61,7 +56,7 @@ for mach=1:nM
             % tfinal3 = end of computation
             % P = pressure after incident shock
             % T = temperature after incident shock
-        [t, V, tfinal1, tfinal2, tfinal3, P, T] = partThroughRRE(mode, X(part), Y(part),mach_numbers(mach));
+        [t, V, tfinal1, tfinal2, tfinal3, P, T] = RREevolution(mode, X(part), Y(part),mach_numbers(mach),false);
         % write VTIM.dat file in the right dir
         file = fopen('VTIM.dat','w');
         fprintf(file, '%1.4E   %1.5f\n', cat(1,t,V));
@@ -85,5 +80,8 @@ for mach=1:nM
         
         % go back to the main directory
         cd(prevDir)
+        
+        out = ['mach = ', num2str(mach_numbers(mach)), '; particle x = ', num2str(X(part)), ', y = ', num2str(Y(part))];
+        disp(out);
     end
 end

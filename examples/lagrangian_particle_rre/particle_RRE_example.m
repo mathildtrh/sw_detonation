@@ -3,7 +3,7 @@
 % mode = 1 --> shock from H2_O2 phase to He phase
 % mode = 2 --> shock from CO2 phase to He phase
 
-mode = 2;
+mode = 1;
 
 if mode == 1
     H2_O2_to_He_conds;
