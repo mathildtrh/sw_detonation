@@ -6,10 +6,14 @@
 %          x, y coordinates of the lag. particle at the beginning of the
 %          simulation
 %          mach : mach number of the incident shock
-% Outputs : t_plot : time array
-%          P, T, V : pressure temperature and specifoc volume
+%          plot : if true, plots the evolution of each variable
+% Outputs : t : time array in expansion
+%          V : specific volume array in expansion
+%          t_1 time spent before expansion/ t_2 time spent in expansion/
+%          t_3 time spent after expansion
+%          P1 T1 pressure and temperature after incident shock
 
-function [t, Ve, t_1, t_2, t_3, P1, T1]=RREevolution(mode, x, y, mach, plot)
+function [t, Ve, t_1, t_2, t_3, P1, T1]=RREevolution(mode, x, y, mach, plt)
 
 if mode ~= 1
     disp("Unexisting mode")
@@ -43,7 +47,7 @@ else
         M1_n = sqrt( (2 + (gamma_I - 1)*M0_n^2 / (1 - gamma_I + 2*gamma_I*M0_n^2) )); % Normal mach number
         % deflection angle
         d1 = atan( 2*cot(omega_rad)*(M0_n^2-1)/(M0^2*(gamma_I+cos(2*omega_rad))+2) );
-        M1 = M1_n / sin(omega_rad-d1); % Mach number behind shock
+        M1 = M1_n / sin(pi-omega_rad-d1); % Mach number behind shock
         
         mu1=asin(1/M1); %angle of forward Mach wave
         
@@ -144,7 +148,7 @@ else
         t_2 = t(end); %time spent in the expansion
         t_3 = 2e-6; %time spent after the expansion, arbitrary set to be 2ms
         
-        if plot
+        if plt
             % Time array
             t_plot = zeros(1,1+2+n_exp+1);
             t_plot(1) = 0; % 1 initial point

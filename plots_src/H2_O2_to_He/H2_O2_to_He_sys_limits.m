@@ -162,34 +162,36 @@ ylabel("\chi")
 title(['Computed boundaries for slow-fast ' name_I '->' name_II ' refraction'])
 xlim([15,90])
 ylim([0,1])
+grid on
+grid minor
 hold off
 
 
 %Plotting limits with Mach instead of shock strength
-incident_Mach_shock_RRE=arrayfun(@xiToMach,1./chis_RRE(2:end-1));
-incident_Mach_shock_RRR_BPR=arrayfun(@xiToMach,1./chis_RRR_BPR)
-incident_Mach_shock_BPR_FNR=arrayfun(@xiToMach,1./chis_BPR_FNR)
-incident_Mach_shock_FPR_TNR=arrayfun(@xiToMach,1./chis_FPR_TNR)
-incident_Mach_shock_TNR_LSR=arrayfun(@xiToMach,1./chis_TNR_LSR(2:end))
-figure
-hold on
-plot(omegas_RRE(2:end-1),incident_Mach_shock_RRE) %ploting RRE<->... limit
-hold on
-plot(omegas_RRR_BPR,incident_Mach_shock_RRR_BPR) %ploting RRR<->BPR limit
-hold on
-plot(omegas_BPR_FNR,incident_Mach_shock_BPR_FNR) %ploting BPR<->FNR lim
-hold on
-plot(omegas_FPR_TNR,incident_Mach_shock_FPR_TNR) %ploting FPR<->TNR lim
-hold on
-plot(omegas_TNR_LSR(2:end),incident_Mach_shock_TNR_LSR)  %ploting TNR<->LSR lim
-
-legend(legends,'Location','eastoutside')
-xlabel("\omega (deg)")
-ylabel("Msh")
-title(['Computed boundaries for slow-fast ' name_I '->' name_II ' refraction'])
-xlim([15,90])
-%ylim([0,1])
-hold off
+% incident_Mach_shock_RRE=arrayfun(@xiToMach,1./chis_RRE(2:end-1));
+% incident_Mach_shock_RRR_BPR=arrayfun(@xiToMach,1./chis_RRR_BPR)
+% incident_Mach_shock_BPR_FNR=arrayfun(@xiToMach,1./chis_BPR_FNR)
+% incident_Mach_shock_FPR_TNR=arrayfun(@xiToMach,1./chis_FPR_TNR)
+% incident_Mach_shock_TNR_LSR=arrayfun(@xiToMach,1./chis_TNR_LSR(2:end))
+% figure
+% hold on
+% plot(omegas_RRE(2:end-1),incident_Mach_shock_RRE) %ploting RRE<->... limit
+% hold on
+% plot(omegas_RRR_BPR,incident_Mach_shock_RRR_BPR) %ploting RRR<->BPR limit
+% hold on
+% plot(omegas_BPR_FNR,incident_Mach_shock_BPR_FNR) %ploting BPR<->FNR lim
+% hold on
+% plot(omegas_FPR_TNR,incident_Mach_shock_FPR_TNR) %ploting FPR<->TNR lim
+% hold on
+% plot(omegas_TNR_LSR(2:end),incident_Mach_shock_TNR_LSR)  %ploting TNR<->LSR lim
+% 
+% legend(legends,'Location','eastoutside')
+% xlabel("\omega (deg)")
+% ylabel("Msh")
+% title(['Computed boundaries for slow-fast ' name_I '->' name_II ' refraction'])
+% xlim([15,90])
+% %ylim([0,1])
+% hold off
 
 function val=xiToMach(xi)
     gamma_I=1.4016;
