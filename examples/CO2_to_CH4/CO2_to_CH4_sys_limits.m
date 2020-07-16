@@ -140,7 +140,11 @@ limits_computation_time=cputime;%initialising timer for computation time
             ,mu_CO2,mu_CH4);
     end
 
+<<<<<<< HEAD
 %% Computes TNR<->LSR limit
+=======
+%Computes TNR<->LSR limit
+>>>>>>> 31c5902f3eb952d83b67c7c59b276cae253dcef5
     %Principle: Solves the Mr=1 equation
     npts=400; %number of points on chi axis
     chis_TNR_LSR=linspace(0,1,npts);
@@ -156,6 +160,7 @@ limits_computation_time=cputime;%initialising timer for computation time
         end
     end
 
+<<<<<<< HEAD
 % %% Computing FPR<->TNR boundary
 % %Principle: Graphically resolves the beta1=beta2 problem, as described...
 %     %... in Abd-El-Fattah, L. F. Henderson: Shock waves at a slow-fast...
@@ -205,6 +210,39 @@ omegas_FPR_TNR_M=zeros(1,nchis_tnr_M);%pre-allocated omega array
 for i=1:nchis_tnr_M
     [omegas_FPR_TNR_M(i),~,~,~]=takayamaFNRtoTNR(1/chis_FPR_TNR_M(i),angle_gam,gamma_CO2,...
     gamma_CH4,mu_CO2,mu_CH4);
+=======
+%Computing FPR<->TNR boundary
+%Principle: Graphically resolves the beta1=beta2 problem, as described...
+    %... in Abd-El-Fattah, L. F. Henderson: Shock waves at a slow-fast...
+    %... gas interface (1978), p88, figure 6b. The boundary is computed...
+    %... with a dichotomy on isBeforeFPRToTNR at constant chi
+txt="Computing FPR-TNR boundary, this may take a while";
+txt
+nchis_tnr=100; %number of points on chi axis
+nys_tnr=30; %number of points in computed polars
+chis_FPR_TNR=linspace(.34,1,nchis_tnr); %chi values
+omegas_FPR_TNR=zeros(1,nchis_tnr);%pre-allocated omega array
+Msj=0; %j-wave Mach initialization
+fpr_tnr_boundary_precision=.01; %dichotomy termination threshold
+for i=1:nchis_tnr
+    solve_Msj_eq=true;
+    omega_inf_tnr=0;omega_sup_tnr=90;
+    while omega_sup_tnr-omega_inf_tnr>fpr_tnr_boundary_precision
+        next_omega=(omega_sup_tnr+omega_inf_tnr)/2;
+        [is_before_trans,Msj]=isBeforeFPRToTNR(1/chis_FPR_TNR(i),pi/180*next_omega,...
+             gamma_CO2,gamma_CH4,mu_CO2,mu_CH4,nys_tnr,solve_Msj_eq,Msj);
+        if solve_Msj_eq %Msj is only computed at the beginning...
+                %... of the dichotomy
+            solve_Msj_eq=false;
+        end
+        if is_before_trans
+            omega_inf_tnr=next_omega;
+        else
+            omega_sup_tnr=next_omega;
+        end
+    end
+    omegas_FPR_TNR(i)=omega_inf_tnr;
+>>>>>>> 31c5902f3eb952d83b67c7c59b276cae253dcef5
 end
 
 limits_computation_time=cputime-limits_computation_time %stopping timer

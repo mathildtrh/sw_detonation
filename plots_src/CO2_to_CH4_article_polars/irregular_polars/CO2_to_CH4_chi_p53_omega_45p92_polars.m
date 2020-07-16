@@ -53,7 +53,6 @@ if ~(isempty(a)) %checking if slution was found
     M1k=sqrt(postShockMachSq(xi_j,M1i,gamma_I)); %k shock Mach
     j_dev=atan(sqrt(tanDefSq(xi_j,M1i,gamma_I))); %j deviation
     plotPolar(M1k,gamma_II,ny,2,xi_j,-j_dev); %plotting k polar
-
     fid=fopen('prec_pol1.txt','r');
     extract_plots;
     semilogy(points(1,2:points(1,1)+1),points(2,2:points(1,1)+1),'mo')
