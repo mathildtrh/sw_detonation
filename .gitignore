@@ -1,0 +1,14 @@
+drafts
+*.asv
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+*.vrb
+plot_digitizing/
+Remy/
+chemistry/Drafts/
+Josue/
+*.zip

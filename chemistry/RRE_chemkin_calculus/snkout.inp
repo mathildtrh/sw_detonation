@@ -1,0 +1,79 @@
+MKGS                   ! SI units - kg, m, kmole; DEFAULT
+/CMGS                   ! CGS units - g, cm, mole
+/JOUL                   ! Energy units - J; DEFAULT;    condition - .NOT. CGS
+/KJ                     ! Energy units - kJ;            condition - .NOT. CGS
+/CAL                    ! Energy units - cal;  default - erg; condition - CGS
+/KCAL                   ! Energy units - kcal; default - erg; condition - CGS
+/MASS                   ! Mass  production rates, concentrations, specific energy; DEFAULT
+/MOLE                   ! Molar production rates, concentrations, specific energy
+/EXTS                   ! All extensive parameters in the non-reduced form; DEFAULT
+INTS                   ! All extensive parameters are reduced by the volume
+
+FILE  t_T_ESP_Ther.dat     ! New file with the filename
+TIME                   ! Time, s
+TEMP                    ! Temperature, K
+PRES                   ! Pressure, Pa, dyne/cm2(CGS); parameter: ATM, BAR(.NOT.CGS)
+DENS
+/YSPC  ALL              ! Species mass fractions;  parameter: MIX, ALL or list of species names
+THER MIX               ! Thermicity, 1/s;  parameter: MIX, ALL or list of species names
+/XSPC OH* OH            !Species mole fractions;  parameter: MIX, ALL or list of species names
+XSPC ALL
+
+END
+
+FILE  t_rho_T_Wm_Yall.dat        ! New file with the filename
+TIME                   ! Time, s
+/GMAS                   ! Gas mass, kg, g(CGS)
+/GVOL                   ! Gas volume, m3, cm3(CGS)
+/PRES                   ! Pressure, Pa, dyne/cm2(CGS); parameter: ATM, BAR(.NOT.CGS)
+DENS                   ! Density, kg/m3, g/cm3(CGS)
+TEMP                   ! Temperature, K
+WMSP  MIX              ! Species molar mass, kg/kmol, g/mol(CGS)
+/HSPC  MIX               ! Species enthalpy, J/kg, erg/g(CGS)
+/QLOS                   ! Heat loss, J/s, erg/s(CGS)
+/QPRD                   ! Heat production; enthalpy difference at the initial temperature
+YSPC  ALL              ! Species mole fractions;  parameter: MIX, ALL or list of species names
+/CSPC  OH  H2O          ! Species mole concentrations;  parameter: MIX, ALL or list of species names
+/SPRD  ALL              ! Species production;            parameter: MIX, ALL or list of species names
+
+END
+
+FILE  MOLEFRAC.DAT     ! New file with the filename
+TIME                   ! Time, s
+XSPC  O2 CH4 CO2 H2O   ! Species mole fractions;  parameter: MIX, ALL or list of species names
+XSPC  OH  H  O         ! Species mole fractions;  parameter: MIX, ALL or list of species names
+XSPC  CH3  CO  HCO     ! Species mole fractions;  parameter: MIX, ALL or list of species names
+
+
+FILE  WP_ALMIX.DAT     ! New file with the filename
+TIME                   ! Time, s
+SPRD  ALL MIX          ! Species production;            parameter: MIX, ALL or list of species names
+TEMP
+
+FILE  X_ALLMIX.DAT     ! New file with the filename
+TIME                   ! Time, s
+XSPC  ALL MIX          ! Species mole fractions;  parameter: MIX, ALL or list of species names
+
+FILE  Y_ALLMIX.DAT     ! New file with the filename
+TIME                   ! Time, s
+YSPC  ALL MIX          ! Species mass fractions;  parameter: MIX, ALL or list of species names
+
+FILE  C_ALLMIX.DAT     ! New file with the filename
+TIME                   ! Time, s
+CSPC  ALL MIX          ! Species concentrations;  parameter: MIX, ALL or list of species names
+
+FILE  H_ALLMIX.DAT       ! New file with the filename
+TIME                   ! Time, s
+HSPC  ALL MIX          ! Species enthalpies;      parameter: MIX, ALL or list of species names
+TEMP                   ! Temperature, K
+
+FILE  CP_ALMIX.DAT     ! New file with the filename
+TIME                   ! Time, s
+CPSP  ALL MIX          ! Species specific heats;  parameter: MIX, ALL or list of species names
+TEMP                   ! Temperature, K
+
+FILE  MW_ALMIX.DAT     ! New file with the filename
+TIME                   ! Time, s
+WMSP  ALL MIX          ! Species specific heats;  parameter: MIX, ALL or list of species names
+
+END
