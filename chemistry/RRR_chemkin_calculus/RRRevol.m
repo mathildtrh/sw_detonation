@@ -84,27 +84,27 @@ else
             return
         end
         
-        % Plot polars if needed
-        figure()
-        [inc_xi, inc_delta]=getPolarMathilde(M1, gamma_I, ny, 0);
-        %[exp_xi, exp_delta] = getExpPolar(M2, gamma_I, ny, xi_i, delta_1);      
-        inc = semilogy(inc_delta*180/pi,inc_xi,'r', 'DisplayName', 'Incident shock');
-        hold on;
-        %exp = semilogy(exp_delta*180/pi,exp_xi,'c', 'DisplayName','Reflected expansion');
-        trans = semilogy(trans_delta*180/pi,trans_xi,'g', 'DisplayName', 'Transmitted shock');
-        refl = semilogy(refl_delta*180/pi,refl_xi,'y', 'DisplayName','Reflected shock');
-        inter = semilogy([delta_t*180/pi],[xi_t],'+k', 'DisplayName','Intersection point : (\delta_t, \xi_t)');
-        inter.LineWidth = 2;
-        inc.LineWidth = 2;
-        %exp.LineWidth = 2;
-        trans.LineWidth = 2;
-        refl.LineWidth = 2;
-        xlabel('\omega (in deg)')
-        ylabel('\xi')
-        legend('Location', 'eastoutside')
-        grid on
-        grid minor
-        title({'Polar figure for RRR'; strcat('M1 = ', num2str(M1), '; Particle x = ', num2str(x*100))})
+%         % Plot polars if needed
+%         figure()
+%         [inc_xi, inc_delta]=getPolarMathilde(M1, gamma_I, ny, 0);
+%         %[exp_xi, exp_delta] = getExpPolar(M2, gamma_I, ny, xi_i, delta_1);      
+%         inc = semilogy(inc_delta*180/pi,inc_xi,'r', 'DisplayName', 'Incident shock');
+%         hold on;
+%         %exp = semilogy(exp_delta*180/pi,exp_xi,'c', 'DisplayName','Reflected expansion');
+%         trans = semilogy(trans_delta*180/pi,trans_xi,'g', 'DisplayName', 'Transmitted shock');
+%         refl = semilogy(refl_delta*180/pi,refl_xi,'y', 'DisplayName','Reflected shock');
+%         inter = semilogy([delta_t*180/pi],[xi_t],'+k', 'DisplayName','Intersection point : (\delta_t, \xi_t)');
+%         inter.LineWidth = 2;
+%         inc.LineWidth = 2;
+%         %exp.LineWidth = 2;
+%         trans.LineWidth = 2;
+%         refl.LineWidth = 2;
+%         xlabel('\omega (in deg)')
+%         ylabel('\xi')
+%         legend('Location', 'eastoutside')
+%         grid on
+%         grid minor
+%         title({'Polar figure for RRR'; strcat('M1 = ', num2str(M1), '; Particle x = ', num2str(x*100))})
 
         P4 = xi_t*P5;                                                          % Pressure
         V4 = V5*xiToVolJump(xi_t, gamma_II);                                   % Spec. Volume

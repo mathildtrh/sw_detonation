@@ -6,11 +6,11 @@
 mode = 1;
 
 if mode == 1
-    H2_O2_to_He_conds;
+    run H2_O2_to_He_conds;
     ttl = "H2-o2 to He interface";
 end
 if mode == 2
-    CO2_to_He_conds;
+    run CO2_to_He_conds;
     ttl = "Co2 to He interface";
 end
 

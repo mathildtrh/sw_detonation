@@ -230,6 +230,7 @@ hold off
 % %ylim([0,1])
 % hold off
 
+save('H2_O2_to_He_limitsMathilde.mat')
 function val=xiToMach(xi)
     gamma_I=1.4016;
     val=sqrt(xiToSqMach(xi,gamma_I,pi/2));

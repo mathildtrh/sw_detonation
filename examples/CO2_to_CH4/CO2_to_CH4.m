@@ -12,6 +12,7 @@
 
 %incident shock properties
 figure
+hold on
 chi=.78; %(pre-shock pressure)/(post-shock pressure)
 xi=1/chi; %corresponds to usual p2/p1 for stationary shock
 Msh=sqrt(xiToSqMach(xi,gamma_CO2,pi/2)); %corresponding...

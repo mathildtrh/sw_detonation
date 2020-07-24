@@ -52,6 +52,6 @@ xi_lim=xiLim(M1,gamma); %max value of xi in shock polar
     delta_neg=flip(-delta_pos); %calculate corresponding negative angles
     delta_plot=[delta_neg,delta_pos]+prev_dev;
     xi_plot=prev_xi*[flip(xi_axis),xi_axis];
-%     hold on
-%     semilogy(180/pi*delta_plot,xi_plot,'-')% plot full polar
+    hold on
+    semilogy(180/pi*delta_plot,xi_plot,'-')% plot full polar
 end

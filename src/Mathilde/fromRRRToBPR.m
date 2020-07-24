@@ -26,7 +26,11 @@ function is_sf_RR=fromRRRToBPR(xi,omega_rad,gamma_I,gamma_II,mu_I,...
     else
         %computing reflected polar
         Mr=sqrt(postShockMachSq(xi,Mi,gamma_I));
-        deltai=postShockDeflection(xi,Mi,gamma_I);
+        
+        Min = sqrt(xiToSqMach(xi,gamma_I,pi/2));
+        phi = asin(Min/Mi);
+        deltai=postShockDeflection(Mi,gamma_I,phi);
+        
         [r_xis,r_deltas]=getPolarMathilde(Mr,gamma_I,ny,2,xi,deltai,max_t_xi);
         %looking for points from reflected polar inside transmitted
         i=ny+1;

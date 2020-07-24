@@ -48,7 +48,7 @@ if ~(isempty(a)) %checking if slution was found
     plot([-1.1,1.1]*i_dev*180/pi,xi_i*[1,1],'--');
     plotPolar(Mr,gamma_I,ny,2,xi_i,i_dev); %plotting r polar
     hold on
-    Msj=a(1); %j shock Mach
+    Msj=double(a(1)); %j shock Mach
     xi_j=((1-gamma_I)+2*gamma_I*Msj^2)/(1+gamma_I); %j pressure jump
     M1k=sqrt(postShockMachSq(xi_j,M1i,gamma_I)); %k shock Mach
     j_dev=atan(sqrt(tanDefSq(xi_j,M1i,gamma_I))); %j deviation

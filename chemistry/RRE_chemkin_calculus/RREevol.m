@@ -76,25 +76,25 @@ else
         a4 = sqrt(gamma_II*R_II*T4);                                           % Speed of sound
         omega_t = asin(sqrt(xiToSqMach(xi_t, gamma_II, pi/2))/M5);             % omega_t = asin(M5n/M5)
         
-        % Plot polars if needed
-        figure()
-        [inc_x, inc_d]=getPolarMathilde(M1, gamma_I, ny, 0);
-        inc = semilogy(inc_d*180/pi,inc_x,'r', 'DisplayName', 'Incident shock');
-        hold on;
-        trans = semilogy(trans_d*180/pi,trans_x,'g', 'DisplayName', 'Transmitted shock');
-        refl = semilogy(refl_d*180/pi,refl_x,'y', 'DisplayName', 'Reflected expansion');
-        inter = semilogy([delta_t*180/pi], [xi_t], '+k', 'DisplayName', 'Intersection point : (\delta_t, \xi_t)');
-        inc.LineWidth = 2;
-        trans.LineWidth = 2;
-        refl.LineWidth = 2;
-        inter.LineWidth = 2;
-        grid on
-        grid minor
-        xlabel('\omega (in deg)')
-        ylabel('\xi')
-        legend('Location', 'eastoutside')
-        title({'Polar figure for RRE'; strcat('M1 = ', num2str(M1), '; Particle x = ', num2str(x*100), 'cm')})
-        
+%         % Plot polars if needed
+%         figure()
+%         [inc_x, inc_d]=getPolarMathilde(M1, gamma_I, ny, 0);
+%         inc = semilogy(inc_d*180/pi,inc_x,'r', 'DisplayName', 'Incident shock');
+%         hold on;
+%         trans = semilogy(trans_d*180/pi,trans_x,'g', 'DisplayName', 'Transmitted shock');
+%         refl = semilogy(refl_d*180/pi,refl_x,'y', 'DisplayName', 'Reflected expansion');
+%         inter = semilogy([delta_t*180/pi], [xi_t], '+k', 'DisplayName', 'Intersection point : (\delta_t, \xi_t)');
+%         inc.LineWidth = 2;
+%         trans.LineWidth = 2;
+%         refl.LineWidth = 2;
+%         inter.LineWidth = 2;
+%         grid on
+%         grid minor
+%         xlabel('\omega (in deg)')
+%         ylabel('\xi')
+%         legend('Location', 'eastoutside')
+%         title({'Polar figure for RRE'; strcat('M1 = ', num2str(M1), '; Particle x = ', num2str(x*100), 'cm')})
+%         
         %% Zone 3 (Prandtl-Meyer expansion from 2)
         
         delta_2 = delta_t - delta_1;                                           % Post expansion deflection

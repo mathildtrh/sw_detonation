@@ -16,9 +16,7 @@ end %calculate corresponding deviation angles for xi
 delta_neg=flip(-delta_pos); %calculate corresponding negative angles
 delta_plot=[delta_neg,delta_pos];
 xi_plot=[flip(xi_axis),xi_axis];
-semilogy(180/pi*delta_plot,xi_plot)% plot full polar
-<<<<<<< HEAD
-hold on;
-=======
->>>>>>> 31c5902f3eb952d83b67c7c59b276cae253dcef5
+%semilogy(180/pi*delta_plot,xi_plot) % plot full polar
+%hold on;
+
 

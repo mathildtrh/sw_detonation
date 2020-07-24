@@ -6,10 +6,10 @@ function [omega_crit, Msj,Mst,Msi]= takayamaFNRtoTNR(xi_i,angle_gam,gamma_I,...
 %Inputs : 
 
 %xi_i : incident pressure jump
-% omeag_rad : angle between LIp and horizontal line
+% angle_gam : angle between LIp and horizontal line
 % gammas : ratios of specific heats
 % mus : molecular masses
-T0 = 300;
+T0 = 298;
 temp_ratio = 1;
 if nargin > 7
     temp_ratio = varargin(1);

@@ -6,11 +6,8 @@
     gamma_I=1.4016; %slow material, first phase
     gamma_II=1.667; %fast material, second phase
     %molecular masses:
-<<<<<<< HEAD
     mu_I=2/3*2+1/3*32;
-=======
-    mu_I=2/3*2+1/3*16;
->>>>>>> 31c5902f3eb952d83b67c7c59b276cae253dcef5
+
     mu_II=4;
     %Universal gas constant (kg.mol^-1.K^-1)
     R_u=8.314;
