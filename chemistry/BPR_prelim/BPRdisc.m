@@ -50,7 +50,7 @@ omega_t = asin(sin(omega_i)*ut/ui);                                    % Angle o
 M5n = ut/a5;                                                           % Normal Mach number
 M5 = M5n/sin(omega_t);                                                 % Mach number
 
-xi_t = machtoPressJump(M5, gamma_II, omega_t);                          % Pressure jump
+xi_t = machtoPressJump(M5, gamma_II, omega_t);                         % Pressure jump
 P4 = xi_t*P5;                                                          % Pressure
 
 %% Zone 3 (membrane equilibrium with 4)

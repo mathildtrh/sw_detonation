@@ -39,7 +39,7 @@ Vt=1/2*(b+sqrt(b^2+4*a_II^2));
 Mst = Vt/a_II;%t shock Mach
 
 % Let's take the membrane inertia into account
-b_corrected = (gamma_II+1)/(gamma_I+1)*(Vi^2-a_I^2)/Vi * omega_rad/1.1;
+b_corrected = (gamma_II+1)/(gamma_I+1)*(Vi^2-a_I^2)/Vi * (x1*omega_rad^2 + x2*omega_rad +x3);
 Vt_corrected = 1/2*(b_corrected+sqrt(b_corrected^2+4*a_II^2));
 Mst_corrected = Vt_corrected/a_II;
 

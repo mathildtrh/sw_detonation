@@ -139,7 +139,23 @@ if mode == 3
     x_b = lsqnonlin(func_b, x0_b);
 end
 
-
+if mode == 4
+    %% Figure 8b to be fitted
+    Mb = csvread('fig8b_hend78.csv'); % digitized fig8b
+    omegas_b = Mb(:,1)*pi/180;
+    VtVi_b = Mb(:,2);
+    
+    xi_b = 1/0.53; % Pressure jump for fig8c
+    Vi_b = sqrt(xiToSqMach(xi_b, gamma_I, pi/2))*a_I; % Associated shock velocity for fig8a
+    bb = (gamma_II+1)/(gamma_I+1) * (Vi_b^2 - a_I^2)/Vi_b; % Auxiliary value
+    
+    % Here x(1) = a; x(2) = b and x(3) = c
+    % where Vpt = Vpi*(a*cos(omega) + b*sin(omega) + c)
+    func_b = @(x)0.5/Vi_b*(bb*(x(1)*omegas_b.^2+x(2)*omegas_b+x(3)) + sqrt((bb*(x(1)*omegas_b.^2+x(2)*omegas_b+x(3))).^2 + 4*a_II^2)) - VtVi_b;
+    x0_b = [1/3 1/3 1/3];
+    
+    x_b = lsqnonlin(func_b, x0_b);
+end
 
 
 
