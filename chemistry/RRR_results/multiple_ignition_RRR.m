@@ -7,29 +7,29 @@
 
 % if main_RRR.m has already been ran, chemical calculus is not needed
 % chemical_run has to be false
-chemical_run = false;
+chemical_run = true;
 
 disp("Running main_RRR.m ... It may take a while... ¯\_(ツ)_/¯");
 run main_RRR.m;
 disp("done");
-mode = 4;
+mode = 3;
 
 %% mode = 1 : one particle // all mach numbers
 if mode == 1
-    part = 2; % CHANGE
-    for mach = 1:2:nM-1
+    part = 1; % CHANGE
+    for mach = 1:1:nM-1
         folder = dirnames(nP*(mach-1)+part);
-        lgd = strcat("Mach = ", num2str(mach_flow(mach)));
+        lgd = strcat("Mach = ", num2str(round(mach_flow(mach),2)));
         [time,temp]=plotChemkinRRR(folder);
         p = plot(time, temp, 'DisplayName', lgd);
-        p.LineWidth = 1.2;
+        p.LineWidth = 2;
         legend('Location', 'eastoutside')
         hold on
         xlabel("Time (s)")
         ylabel("Temperature (K)")
-        title ({"Evolution of temperature with time,"; ...
-            "for several incident shock strengths,"; ...
-            strcat("fluid particle : x = ", num2str(X(part)*100), "cm")});
+        %title ({"Evolution of temperature with time,"; ...
+            %"for several incident shock strengths,"; ...
+            %strcat("fluid particle : x = ", num2str(X(part)*100), "cm")});
     end
 end
 
@@ -56,20 +56,21 @@ end
 
 %% mode = 3 : one mach number // all particles
 if mode == 3
-    mach = 12; % CHANGE
+    mach = 1; % CHANGE
+    figure()
     for part = 1:1:nP
         folder = dirnames(nP*(mach-1)+part);
-        lgd = strcat("X = ", num2str(X(part)));
+        lgd = strcat("X = ", num2str(X(part)*100), " cm");
         [time,temp]=plotChemkinRRR(folder);
         p = plot(time, temp, 'DisplayName', lgd);
-        p.LineWidth = 1.2;
+        p.LineWidth = 2;
         legend('Location', 'eastoutside')
         hold on
         xlabel("Time (s)")
         ylabel("Temperature (K)")
-        title ({"Evolution of temperature with time,"; ...
-            "for several fluid particles,";...
-            strcat("Mach number of shock = ", num2str(mach_flow(mach)))});
+        %title ({"Evolution of temperature with time,"; ...
+            %"for several fluid particles,";...
+            %strcat("Mach number of shock = ", num2str(mach_flow(mach)))});
     end
 end
 

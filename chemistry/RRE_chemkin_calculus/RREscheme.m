@@ -23,7 +23,7 @@ part.Color = col;
 % Plot 1st shock
 l_inc = 'Incident shock';
 inc = plot([0,30],[0,30*tan(omega_i)],'r');
-inc.LineWidth = 2;
+inc.LineWidth = 2.5;
 
 % Plot expansion fan
 i = (alpha_2-alpha_3)/5;
@@ -37,23 +37,23 @@ end
 % Plot interface
 l_int = 'Gas interface';
 int1 = plot([0,30],[0,0],'c');
-int1.LineWidth = 2;
+int1.LineWidth = 2.5;
 % Plot deviated interface
 int2 = plot([0,-20],[0,-20*tan(delta_t)],'c');
-int2.LineWidth = 2;
+int2.LineWidth = 2.5;
 % Plot transmitted shock
 gr = [0 0.5 0];
 l_trans = 'Transmitted shock';
 trans = plot([0,-20],[0,-20*tan(omega_t)]);
 trans.Color = gr;
-trans.LineWidth = 2;
+trans.LineWidth = 2.5;
 
 % Plot trajectory in phase I
 l_traj = strcat('Trajectory of the particle in phase I');
 traj1 = plot([x,y/tan(omega_i)],[y,y],'--');
 traj1.Marker = '*';
 traj1.MarkerSize = 10;
-traj1.LineWidth = 2;
+traj1.LineWidth = 2.5;
 traj1.Color = col;
 
 dist1 = y*sin(mu_2+omega_i-delta_1)/(sin(mu_2)*sin(omega_i));
@@ -63,7 +63,7 @@ yprime = y-sin(delta_1)*dist1;
 traj2 = plot([y/tan(omega_i), xprime],[y, yprime],'--');
 traj2.Marker = '*';
 traj2.MarkerSize = 10;
-traj2.LineWidth = 2;
+traj2.LineWidth = 2.5;
 traj2.Color = col;
 
 dist2 = y*sin(mu_3-delta_t+omega_i)/(sin(mu_3-delta_2)*sin(omega_i));
@@ -72,7 +72,7 @@ yscd = y-sin(delta_1)*dist2;
 xtrc = 20+xscd;
 ytrc = -xtrc*tan(delta_t);
 traj3 = plot([xscd, -20],[yscd,yscd+ytrc],'--');
-traj3.LineWidth = 2;
+traj3.LineWidth = 2.5;
 traj3.MarkerSize = 10;
 traj3.Color = col;
 
@@ -80,8 +80,8 @@ traj3.Color = col;
 l_flow = 'Flow motion in the inert phase';
 flow1 = plot([30,-8/tan(omega_t)],[-8,-8],'-.m');
 flow2 = plot([-8/tan(omega_t),-20],[-8, -8-(20-8/tan(omega_t))*tan(delta_t)], '-.m');
-flow1.LineWidth = 2;
-flow2.LineWidth = 2;
+flow1.LineWidth = 2.5;
+flow2.LineWidth = 2.5;
 
 % Frame
 axis equal
@@ -89,13 +89,14 @@ xlim([-20,30])
 ylim([-15,15])
 
 % Axes
-xlabel("x-axis (cm)")
-ylabel("y-axis (cm)")
-grid on
+xlabel("x-axis (cm)", 'FontSize', 18)
+ylabel("y-axis (cm)", 'FontSize', 18)
+%grid on
 
 % Legends
-legend([inc,exp,int1, trans,traj1,flow1],{l_inc,l_exp,l_int,l_trans, l_traj, l_flow})
+lgd=legend([inc,exp,int1, trans,traj1,flow1],{l_inc,l_exp,l_int,l_trans, l_traj, l_flow});
 legend('boxoff')
-legend('Location', 'northwest')
+lgd.Location = 'northwest';
+lgd.FontSize=14;
 tmp = true;
 end

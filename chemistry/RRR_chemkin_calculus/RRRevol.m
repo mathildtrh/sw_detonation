@@ -81,30 +81,32 @@ else
         
         if xi_t == -1
             disp("No intersection point : maybe you're not in a RRR structure...");
-            return
+            %return
         end
         
 %         % Plot polars if needed
 %         figure()
 %         [inc_xi, inc_delta]=getPolarMathilde(M1, gamma_I, ny, 0);
-%         %[exp_xi, exp_delta] = getExpPolar(M2, gamma_I, ny, xi_i, delta_1);      
-%         inc = semilogy(inc_delta*180/pi,inc_xi,'r', 'DisplayName', 'Incident shock');
+%         [exp_xi, exp_delta] = getExpPolar(M2, gamma_I, ny, xi_i, delta_1);      
+%         inc = semilogy(inc_delta*180/pi,inc_xi,'r');
 %         hold on;
-%         %exp = semilogy(exp_delta*180/pi,exp_xi,'c', 'DisplayName','Reflected expansion');
-%         trans = semilogy(trans_delta*180/pi,trans_xi,'g', 'DisplayName', 'Transmitted shock');
-%         refl = semilogy(refl_delta*180/pi,refl_xi,'y', 'DisplayName','Reflected shock');
-%         inter = semilogy([delta_t*180/pi],[xi_t],'+k', 'DisplayName','Intersection point : (\delta_t, \xi_t)');
-%         inter.LineWidth = 2;
+%         exp = semilogy(exp_delta*180/pi,exp_xi,'c');
+%         trans = semilogy(trans_delta*180/pi,trans_xi,'g');
+%         refl = semilogy(refl_delta*180/pi,refl_xi,'y');
+%         %inter = semilogy([delta_t*180/pi],[xi_t],'+k', 'DisplayName','Intersection point : (\delta_t, \xi_t)');
+%         %inter.LineWidth = 2;
 %         inc.LineWidth = 2;
-%         %exp.LineWidth = 2;
+%         exp.LineWidth = 2;
 %         trans.LineWidth = 2;
 %         refl.LineWidth = 2;
-%         xlabel('\omega (in deg)')
-%         ylabel('\xi')
-%         legend('Location', 'eastoutside')
-%         grid on
-%         grid minor
-%         title({'Polar figure for RRR'; strcat('M1 = ', num2str(M1), '; Particle x = ', num2str(x*100))})
+%         xlabel('\omega (in deg)', 'FontSize',18)
+%         ylabel('\xi', 'FontSize', 18)
+%         lgd = legend('Incident shock','Reflected expansion','Transmitted shock','Reflected shock');
+%         lgd.Location = 'southwest';
+%         lgd.FontSize = 14;
+%         %grid on
+%         %grid minor
+%         %title({'Polar figure for RRR'; strcat('M1 = ', num2str(M1), '; Particle x = ', num2str(x*100))})
 
         P4 = xi_t*P5;                                                          % Pressure
         V4 = V5*xiToVolJump(xi_t, gamma_II);                                   % Spec. Volume
@@ -131,10 +133,12 @@ else
         if plt
             
             % Legend of the graph
-            lgd = strcat('Mach of incident flow : ', num2str(M1), '; Particle x = ', num2str(x*100), 'cm ; y = ', num2str(y*100), 'cm');
+            %lgd = strcat('Mach of incident flow : ', num2str(M1), '; Particle x = ', num2str(x*100), 'cm ; y = ', num2str(y*100), 'cm');
+            lgd = strcat('Mach of incident flow : ', num2str(round(M1,1)), '; Strength of shock = ', num2str(round(xi_i,1)));
+            %lgd = strcat('Ordinate of particle : ', num2str(round(y*100)), ' cm');
             %ttl = lgd;
             %ttl = strcat('Mach of incident flow : ', num2str(M1), "; All particles");
-            ttl = strcat('All Mach numbers; Particle x = ', num2str(x*100), 'cm ; y = ', num2str(y*100), 'cm');
+            %ttl = strcat('All Mach numbers; Particle x = ', num2str(x*100), 'cm ; y = ', num2str(y*100), 'cm');
 
             % Color of the graph
             col = varargin{2};
@@ -145,40 +149,44 @@ else
             V_plot = [V1, V1, V2, V2, V3, V3];                                 % Spec volume array
             
             figure(1)
-            subplot(3,1,1)
-            pressure = plot(t_plot, P_plot);
-            title({'Pressure evolution';ttl})
-            xlabel("Time (s)")
-            ylabel("Pressure (Pa)")
+            %subplot(3,1,1)
+            pressure = plot(t_plot, P_plot, 'DisplayName', lgd);
+            title('Pressure evolution')
+            xlabel("Time (s)", 'FontSize', 14)
+            ylabel("Pressure (Pa)", 'FontSize', 14)
             pressure.Color = col;
-            grid on
-            grid minor
-            hold on
-            
-            subplot(3,1,2)
-            temperature = plot(t_plot, T_plot);
-            title('Temperature evolution')
-            xlabel("Time (s)")
-            ylabel("Temperature (K)")
-            temperature.Color = col;
-            grid on
-            grid minor
-            hold on
-            
-            subplot(3,1,3)
-            volume = plot(t_plot, V_plot, 'DisplayName', lgd);
-            title('Specific volume evolution')
-            xlabel("Time (s)")
-            ylabel("Specific volume")
-            volume.Color = col;
+            pressure.LineWidth = 2;
             legend();
             grid on
-            grid minor
+            %grid minor
             hold on
+            
+%             subplot(3,1,2)
+%             temperature = plot(t_plot, T_plot);
+%             title('Temperature evolution', 'FontSize', 14)
+%             xlabel("Time (s)", 'FontSize', 14)
+%             ylabel("Temperature (K)")
+%             temperature.Color = col;
+%             temperature.LineWidth = 2;
+%             %grid on
+%             %grid minor
+%             hold on
+%             
+%             subplot(3,1,3)
+%             volume = plot(t_plot, V_plot, 'DisplayName', lgd);
+%             title('Specific volume evolution', 'FontSize', 14)
+%             xlabel("Time (s)", 'FontSize', 14)
+%             ylabel("Specific volume")
+%             volume.Color = col;
+%             volume.LineWidth = 2;
+%             legend();
+%             %grid on
+%             %grid minor
+%             hold on
             
             figure(2)
             [tmp]=RRRscheme(x,y,omega_i, omega_t, delta_1, delta_t, omega_r, col);
-            title({'Trajectory of Lagrangian particle';ttl})
+            %title({'Trajectory of Lagrangian particle';ttl})
             hold on
         end
         solution = [t_1 t_2 t_3 0 0 ; P1 P2 P3 P4 P5 ; T1 T2 T3 T4 T5 ; V1 V2 V3 V4 V5];

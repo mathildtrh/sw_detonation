@@ -7,31 +7,31 @@
 
 % if main_RRE.m has already been ran, chemical calculus is not needed
 % chemical_run has to be false
-chemical_run = false;
+chemical_run = true;
 
 disp("Running main_RRE.m ... It may take a while... ¯\_(ツ)_/¯");
 run main_RRE.m;
 disp("done");
 
-cd '/home/mathilde/Documents/PRe_Detonation/sw_detonation/chemistry/RRE_chemkin_calculus/data_step2';
-mode = 1;
+cd '/home/mathilde/Documents/PRe_Detonation/sw_detonation/chemistry/RRE_chemkin_calculus';
+mode = 3;
 
 %% mode = 1 : one particle // all mach numbers
 if mode == 1
-    part = 5; % CHANGE
+    part = 1; % CHANGE
     for mach = 1:1:nM
         folder = dirnames(nP*(mach-1)+part);
-        lgd = strcat("Mach = ", num2str(mach_flow(mach)));
+        lgd = strcat("Mach = ", num2str(round(mach_flow(mach),1)));
         [time,temp]=plotChemkinRRE(folder);
         p = plot(time, temp, 'DisplayName', lgd);
-        p.LineWidth = 1.5;
+        p.LineWidth = 2;
         legend('Location', 'east')
         hold on
-        xlabel("Time (s)")
-        ylabel("Temperature (K)")
-        title ({"Evolution of temperature with time,"; ...
-            "for several incident shock strengths,"; ...
-            strcat("fluid particle : x = ", num2str(X(part)*100), "cm")});
+        xlabel("Time (s)",'FontSize', 18)
+        ylabel("Temperature (K)", 'FontSize', 18)
+        %title ({"Evolution of temperature with time,"; ...
+            %"for several incident shock strengths,"; ...
+            %strcat("fluid particle : x = ", num2str(X(part)*100), "cm")});
     end
 end
 
@@ -67,9 +67,9 @@ if mode == 3
         hold on
         xlabel("Time (s)")
         ylabel("Temperature (K)")
-        title ({"Evolution of temperature with time,"; ...
-            "for several fluid particles,";...
-            strcat("Mach number of shock = ", num2str(mach_flow(mach)))});
+        %title ({"Evolution of temperature with time,"; ...
+            %"for several fluid particles,";...
+            %strcat("Mach number of shock = ", num2str(mach_flow(mach)))});
     end
 end
 

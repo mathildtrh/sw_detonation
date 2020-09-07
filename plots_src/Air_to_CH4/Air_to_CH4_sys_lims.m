@@ -160,26 +160,27 @@ xi_e = data(1:61,10);
 %% Ploting limits like article
 figure
 hold on
-plot(omegas_RRE(2:end-1),chis_RRE(2:end-1),'b','LineWidth',1.5); %ploting RRE<->... limit
-plot(omegas_RRR_BPR,chis_RRR_BPR,'r','LineWidth',1.5); %ploting RRR<->BPR limit Yann's method
+plot(omegas_RRE(2:end-1),chis_RRE(2:end-1),'b','LineWidth',2); %ploting RRE<->... limit
+plot(omegas_RRR_BPR,chis_RRR_BPR,'r','LineWidth',2); %ploting RRR<->BPR limit Yann's method
 % plot(omegas_RRR_BPR_M,chis_RRR_BPR_M, '--r','LineWidth',1.5) %ploting RRR<->BPR limit Mathilde's method
-plot(omegas_BPR_FNR,chis_BPR_FNR,'y','LineWidth',1.5); %ploting BPR<->FNR lim
-plot(omegas_FPR_TNR(10:end),chis_FPR_TNR(10:end),'m','LineWidth',1.5); %ploting FPR<->TNR lim
-plot(omegas_TNR_LSR(2:end),chis_TNR_LSR(2:end),'g','LineWidth',1.5);  %ploting TNR<->LSR lim
+plot(omegas_BPR_FNR,chis_BPR_FNR,'y','LineWidth',2); %ploting BPR<->FNR lim
+plot(omegas_FPR_TNR(10:end),chis_FPR_TNR(10:end),'m','LineWidth',2); %ploting FPR<->TNR lim
+plot(omegas_TNR_LSR(2:end),chis_TNR_LSR(2:end),'g','LineWidth',2);  %ploting TNR<->LSR lim
 
-plot(alpha_j, xi_j, 'oc');
-plot(alpha_a, xi_a, 'og');
-plot(alpha_A, xi_A, 'om');
-plot(alpha_i, xi_i, 'ok');
-plot(alpha_e, xi_e, 'or');
+plot(alpha_j, xi_j, 'oc','LineWidth',1.5);
+plot(alpha_a, xi_a, 'og','LineWidth',1.5);
+plot(alpha_A, xi_A, 'om','LineWidth',1.5);
+plot(alpha_i, xi_i, 'ok','LineWidth',1.5);
+plot(alpha_e, xi_e, 'or','LineWidth',1.5);
 
-legends={"RRE->... (graphical resolution)",...
+legends=legend("RRE->... (graphical resolution)",...
     "RRR<->BPR (Yann)","BPR<->FNR","FPR<->TNR",...
-    "TNR<->LSR","\alpha_j", "\alpha_a", "\alpha_A", "\alpha_i", "\alpha_e"};
-legend(legends,'Location','eastoutside')
-xlabel("\omega_i (deg)")
-ylabel("\chi")
-title(['Computed boundaries for slow-fast ' name_I '->' name_II ' refraction'])
+    "TNR<->LSR","\alpha_j", "\alpha_a", "\alpha_A", "\alpha_i", "\alpha_e");
+legends.Location = 'eastoutside';
+legends.FontSize = 14;
+xlabel("\omega_i (deg)", 'FontSize', 18)
+ylabel("\chi", 'FontSize', 18)
+%title(['Computed boundaries for slow-fast ' name_I '->' name_II ' refraction'])
 xlim([40,90])
 ylim([0,1])
 grid on

@@ -185,22 +185,22 @@ hold on
 fpr = plot(omegas_FPR_TNR(10:end),chis_FPR_TNR(10:end)); %ploting FPR<->TNR lim
 hold on
 tnr = plot(omegas_TNR_LSR(2:end),chis_TNR_LSR(2:end));  %ploting TNR<->LSR lim
-legends={"RRE->... (graphical resolution)",...
-    "RRR<->BPR (Yann)","BPR<->FNR","FPR<->TNR",...
-    "TNR<->LSR"};
-rre.LineWidth = 1.5;
-rrr.LineWidth = 1.5;
-bpr.LineWidth = 1.5;
-fpr.LineWidth = 1.5;
-tnr.LineWidth = 1.5;
-legend(legends,'Location','eastoutside')
-xlabel("$\omega_i$ (deg)",'interpreter','latex')
-ylabel("\chi")
-title(['Computed boundaries for slow-fast ' name_I '->' name_II ' refraction'])
+legends=legend("RRE->... (graphical resolution)",...
+    "RRR<->BPR","BPR<->FNR","FPR<->TNR",...
+    "TNR<->LSR");
+rre.LineWidth = 2.5;
+rrr.LineWidth = 2.5;
+bpr.LineWidth = 2.5;
+fpr.LineWidth = 2.5;
+tnr.LineWidth = 2.5;
+legends.FontSize = 14;
+xlabel("\omega (in deg)",'FontSize',18)
+ylabel("\chi", 'FontSize',18)
+%title(['Computed boundaries for slow-fast ' name_I '->' name_II ' refraction'])
 xlim([15,90])
 ylim([0,1])
-grid on
-grid minor
+%grid on
+%grid minor
 hold off
 
 

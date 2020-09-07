@@ -162,7 +162,10 @@ else
         
         if plt
             % Legend of the graph
-            lgd = strcat('Mach of incident flow : ', num2str(M1), '; Particle x = ', num2str(x*100), 'cm ; y = ', num2str(y*100), 'cm');
+            %lgd = strcat('Mach of incident flow : ', num2str(M1), '; Particle x = ', num2str(x*100), 'cm ; y = ', num2str(y*100), 'cm');
+            lgd = strcat('Mach of incident flow : ', num2str(round(M1,1)), '; Shock strength : ', num2str(round(inc_x,1)));
+            %lgd = strcat('Ordinate of particle : ', num2str(round(y*100)), ' cm');
+
             %ttl = lgd;
             ttl = strcat('Mach of incident flow : ', num2str(M1), "; All particles");
             %ttl = strcat('All Mach numbers; Particle x = ', num2str(x*100), 'cm ; y = ', num2str(y*100), 'cm');
@@ -199,46 +202,49 @@ else
             V_plot(n_exp+4) = V3; % 1 final point
             
             figure(1)
-            subplot(3,1,1)
-            pressure = plot(t_plot, P_plot);
-            title({ttl; 'Pressure evolution'})
-            xlabel("Time (s)")
-            ylabel("Pressure (Pa)")
+            %subplot(3,1,1)
+            pressure = plot(t_plot, P_plot, 'DisplayName', lgd);
+            title('Pressure evolution')
+            xlabel("Time (s)", 'FontSize', 14)
+            ylabel("Pressure (Pa)", 'FontSize', 14)
             pressure.Color = col;
+            pressure.LineWidth = 2;
             hold on
             grid on
-            grid minor
+            %grid minor
             
             
             
-            subplot(3,1,2)
-            temperature = plot(t_plot, T_plot);
-            title('Temperature evolution')
-            xlabel("Time (s)")
-            ylabel("Temperature (K)")
-            temperature.Color = col;
-            hold on
-            grid on
-            grid minor
-            
-            
-            subplot(3,1,3)
-            volume = plot(t_plot, V_plot, 'DisplayName', lgd);
-            title('Specific volume evolution')
-            xlabel("Time (s)")
-            ylabel("Specific volume")
-            volume.Color = col;
-            legend();
-            hold on
-            grid on
-            grid minor
+%             subplot(3,1,2)
+%             temperature = plot(t_plot, T_plot);
+%             title('Temperature evolution')
+%             xlabel("Time (s)", 'FontSize', 14)
+%             ylabel("Temperature (K)", 'FontSize', 14)
+%             temperature.Color = col;
+%             temperature.LineWidth = 2;
+%             hold on
+%             %grid on
+%             %grid minor
+%             
+%             
+%             subplot(3,1,3)
+%             volume = plot(t_plot, V_plot, 'DisplayName', lgd);
+%             title('Specific volume evolution')
+%             xlabel("Time (s)", 'FontSize', 14)
+%             ylabel("Specific volume", 'FontSize', 14)
+%             volume.Color = col;
+%             volume.LineWidth = 2;
+%             legend();
+%             hold on
+%             %grid on
+%             %grid minor
             
             
             
             
             figure(2)
             tmp = RREscheme(x,y,omega_i, omega_t, delta_1, delta_t, mu_2, mu_3, col);
-            title({'Trajectory of Lagrangian particle';ttl})
+            %title({'Trajectory of Lagrangian particle';ttl})
             hold on
             
         end

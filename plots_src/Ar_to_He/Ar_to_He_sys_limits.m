@@ -143,32 +143,32 @@ limits_computation_time=cputime-limits_computation_time %stopping timer
 %Ploting limits like article
 figure
 hold on
-plot(omegas_RRE(2:end-1),chis_RRE(2:end-1)) %ploting RRE<->... limit
+plot(omegas_RRE(2:end-1),chis_RRE(2:end-1),'LineWidth',2.5) %ploting RRE<->... limit
 hold on
-plot(omegas_RRR_BPR,chis_RRR_BPR) %ploting RRR<->BPR limit
+plot(omegas_RRR_BPR,chis_RRR_BPR,'LineWidth',2.5) %ploting RRR<->BPR limit
 hold on
-plot(omegas_BPR_NFR,chis_BPR_NFR) %ploting BPR<->NFR lim
+plot(omegas_BPR_NFR,chis_BPR_NFR,'LineWidth',2.5) %ploting BPR<->NFR lim
 hold on
-plot(omegas_FPR_TNR(2:end),chis_FPR_TNR(2:end)) %ploting FPR<->TNR lim
+plot(omegas_FPR_TNR(2:end),chis_FPR_TNR(2:end),'LineWidth',2.5) %ploting FPR<->TNR lim
 hold on
-plot(omegas_TNR_LSR(2:end),chis_TNR_LSR(2:end))  %ploting TNR<->LSR lim
+plot(omegas_TNR_LSR(2:end),chis_TNR_LSR(2:end),'LineWidth',2.5)  %ploting TNR<->LSR lim
 
 Ar_to_He_sim_results_data;
 hold on
-scatter(RRE_sims(:,3),RRE_sims(:,1))
+scatter(RRE_sims(:,3),RRE_sims(:,1),'LineWidth',2.5)
 hold on
-scatter(BPR_sims(:,3),BPR_sims(:,1),'r')
+scatter(BPR_sims(:,3),BPR_sims(:,1),'r','LineWidth',2.5)
 hold on
-scatter(FPR_sims(:,3),FPR_sims(:,1),'MarkerEdgeColor',[1,.5,0])
+scatter(FPR_sims(:,3),FPR_sims(:,1),'MarkerEdgeColor',[1,.5,0],'LineWidth',2.5)
 hold on
-scatter(TMR_sims(:,3),TMR_sims(:,1),'m')
+scatter(TMR_sims(:,3),TMR_sims(:,1),'m','LineWidth',2.5)
 legends={"RRE->... (graphical resolution)",...
     "RRR<->BPR","BPR<->FNR","FPR<->TNR",...
     "TNR<->LSR","RRE sims","BPR sims",...
     "FPR sims","TNR sims"};
 
 legend(legends,'Location','eastoutside')
-xlabel("$\omega_i$ (deg)",'interpreter','latex')
+xlabel("\omega (in deg)")
 ylabel("\chi")
 title(['Computed boundaries for slow-fast ' name_I '->' name_II ' refraction'])
 xlim([15,90])

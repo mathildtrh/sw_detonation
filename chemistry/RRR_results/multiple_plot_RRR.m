@@ -8,10 +8,11 @@ temp_II = 1138; % in K
 press = 101325; % in Pa
 cst = [gamma_I, gamma_II, R_I, R_II];
 
+press_jumps = linspace(1.02, 1.66, 7);
 mach_numbers = sqrt(xiToSqMach(press_jumps, gamma_I, pi/2));
 mach_flow = sqrt(xiToSqMach(press_jumps, gamma_I, omega_deg*pi/180));
 
-X = [1 5 10 15 20 25];
+X = [5 10 15 20 25];
 Y = round(X*tan(omega_deg*pi/180),2); % Particles are aligned with the incident shock
 
 X = (X+5)*1e-2;
@@ -26,20 +27,20 @@ colors = [0.6 0 0.8; 0.4 0 0.6; 0.5 0 0.4; 0.2 0.2 0.5; 0 0.4 0.8; 0 0.6 0.5; 0 
 
 %% Multiple particles
 if mode == 1 
-    mach = 5;
+    mach = 1;
     
     for part = 1:1:nP
         [sol] = RRRevol(cst, X(part), Y(part), mach_numbers(mach), ...
-            omega_deg, press, temp_I, temp_II, 1, colors(part+1,:));
+            omega_deg, press, temp_I, temp_II, 1, colors(part+2,:));
     end
 
 %% Multiple mach numbers
 else
-    part = 2;
+    part = 1;
     
     for mach = 1:1:7
-        mach2 = 5*mach-2;
-        [sol] = RRRevol(cst, X(part), Y(part), mach_numbers(mach2), ...
+        %mach2 = 5*mach-2;
+        [sol] = RRRevol(cst, X(part), Y(part), mach_numbers(mach), ...
             omega_deg, press, temp_I, temp_II, 1, colors(mach,:));
     end
 end

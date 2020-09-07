@@ -32,7 +32,7 @@ if mode == 1
 %     mach_numbers = linspace(3.66, 4.02, 37);
 %     mach_flow = mach_numbers./sin(omega_deg*pi/180);
     
-    X = [1 5 10 15 20 25];
+    X = [5 7 10 12 15 17 20 22 25];
     Y = round(X*tan(omega_deg*pi/180),2); % Particles are aligned with the incident shock
     X = X+5;
     

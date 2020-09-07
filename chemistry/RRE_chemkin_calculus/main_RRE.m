@@ -31,11 +31,12 @@ if mode == 1
 %     mach_flow = sqrt(xiToSqMach(press_jumps, gamma_I, omega_deg*pi/180)); %parallel to flow
 %     
     % Choose range of Mach numbers of the incident flow
-    mach_numbers = linspace(2, 3, 101);
+    mach_numbers = 2.22;
     mach_flow = mach_numbers./sin(omega_deg*pi/180);
     
     % Choose particles to study
-    X = linspace(1,25,25);
+    %X = linspace(1,25,25);
+    X=[5 7 10 12 15 17 20 22 25];
     Y = round(X*tan(omega_deg*pi/180),2); % Particles are aligned with the incident shock
     X = X+5;
     

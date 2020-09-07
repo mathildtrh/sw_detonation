@@ -9,6 +9,7 @@ press = 101325; % in Pa
 cst = [gamma_I, gamma_II, R_I, R_II];
 
 mach_numbers = [2 2.2 2.4 2.6 2.8 3];
+%mach_numbers = 2;
 mach_flow = mach_numbers./sin(omega_deg*pi/180);
 X = [5 10 15 20 25];
 Y = round(X*tan(omega_deg*pi/180),2); % Particles are aligned with the incident shock
@@ -25,7 +26,7 @@ colors = [0.6 0 0.8; 0.4 0 0.6; 0.5 0 0.4; 0.2 0.2 0.5; 0 0.4 0.8; 0 0.6 0.5; 0 
 
 %% Multiple particles
 if mode == 1 
-    mach = 2;
+    mach = 1;
     
     for part = 1:1:nP
         [sol, expan] = RREevol(cst, X(part), Y(part), mach_numbers(mach), ...
