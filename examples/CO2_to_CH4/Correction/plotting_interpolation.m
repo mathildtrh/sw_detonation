@@ -75,13 +75,15 @@ if plotting_mode == 2
     Vt_opti=1/2*(b+sqrt(b.^2+4*a_II^2));
     
     %experimental results
-    Vt_Vi_b = 1.397;
+    Vt_Vi_a = 1.477; % Theoretical ratio digitized from fig8a
+    Vt_Vi_b = 1.397; % Theoretical ratio digitized from fig8b
+    Vt_Vi_c = 1.231; % Theoretical ratio digitized from fig8c
     
     %plotting
     figure()
     hold on
     plot(Mb(:,1),Mb(:,2), 'bo', 'MarkerSize', 10, 'LineWidth', 2)
-    plot([20 90], [1 1]*Vt_Vi_b, 'k--', 'LineWidth', 2)
+    plot([20 90], [1 1]*Vt_Vi_c, 'k--', 'LineWidth', 2)
     plot(omega_deg, Vt_opti/Vi_b, 'r', 'LineWidth', 2)
     lgd=legend('Digitized experimental data',...
         'Theoretical value',...

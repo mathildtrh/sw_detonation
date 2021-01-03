@@ -16,7 +16,7 @@ a_II = sqrt(gamma_II*Ru/mu_II*T_II);
 % mode 2 : cos(omega_i)
 % mode 3 : integrated in calculation of boudaries
 
-mode = 1;
+%mode = 1;
 if mode == 1
     %% Figure 8a to be fitted
     Ma = csvread('fig8a_hend78.csv'); % digitized fig8a
@@ -141,7 +141,7 @@ end
 
 if mode == 4
     %% Figure 8b to be fitted
-    Mb = csvread('fig8b_hend78.csv'); % digitized fig8b
+    Mb = csvread('fig8c_hend78.csv'); % digitized fig8b
     omegas_b = Mb(:,1)*pi/180;
     VtVi_b = Mb(:,2);
     
