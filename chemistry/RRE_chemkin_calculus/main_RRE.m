@@ -25,20 +25,20 @@ if mode == 1
     press = 101325; % in Pa
     cst = [gamma_I, gamma_II, R_I, R_II];
     
-%     % Choose range of pressure jumps to explore
-%     press_jumps = linspace(1, 10, 20);
+    % Choose range of pressure jumps to explore
+%     press_jumps = linspace(3.4, 7.2, 381);
 %     mach_numbers = sqrt(xiToSqMach(press_jumps, gamma_I, pi/2)); % normal to shock
 %     mach_flow = sqrt(xiToSqMach(press_jumps, gamma_I, omega_deg*pi/180)); %parallel to flow
-%     
+
     % Choose range of Mach numbers of the incident flow
-    mach_numbers = 2.22;
-    mach_flow = mach_numbers./sin(omega_deg*pi/180);
+    mach_flow = linspace(7,10,301);
+    mach_numbers = mach_flow.*sin(omega_deg*pi/180);
     
     % Choose particles to study
-    %X = linspace(1,25,25);
-    X=[5 7 10 12 15 17 20 22 25];
+    %X = linspace(1,5,25);
+    X=[0.4 1.4 2.4 3.4 4.4];
     Y = round(X*tan(omega_deg*pi/180),2); % Particles are aligned with the incident shock
-    X = X+5;
+    X = X+0.1;
     
     nM = length(mach_numbers);
     nP = length(X);

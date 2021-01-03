@@ -13,8 +13,8 @@
     gamma_II=1.303; %fast material, second phase
     %molecular masses:
     mu_I=44.01;
-    %mu_II=16.04; %for pure CH4
-    mu_II=18.84; %for contaminated CH4
+    mu_II=16.04; %for pure CH4
+    %mu_II=18.84; %for contaminated CH4
 
 %incident shock properties
 figure
@@ -49,15 +49,15 @@ hold off
 
 %adding legend and setting window limits
 legend('Incident CO2 polar','Transmited CH4 polar',...
-    'incident \xi','Reflected expansion')
-title(['Polars for ' name_I '->'...
-         name_II ' refraction with \chi=' num2str(chi) ' and \omega='...
-        num2str(omega_deg) ' deg'])
-xlabel('\delta (deg)')
-ylabel('\xi')
+    'incident \xi','Reflected expansion','Location','NorthEast')
+% title(['Polars for ' name_I '->'...
+%          name_II ' refraction with \chi=' num2str(chi) ' and \omega='...
+%         num2str(omega_deg) ' deg'])
+xlabel('\delta (deg)','FontSize',20,'FontWeight','bold')
+ylabel('\xi','FontSize',20,'FontWeight','bold')
 xi_lim_II=xiLim(Mt,gamma_II);
 ylim([1,1.1*xi_lim_II])
 delta_max=deltaMax(Mt,gamma_II);
 xlim(delta_max*180/pi*1.3*[-1,1])
-set(gca,'yscale','log')
+set(gca,'yscale','log','FontSize',16,'FontWeight','bold','LineWidth',1.5)
 hold off

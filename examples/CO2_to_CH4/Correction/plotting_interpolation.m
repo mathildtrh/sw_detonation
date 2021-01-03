@@ -80,16 +80,16 @@ if plotting_mode == 2
     %plotting
     figure()
     hold on
-    plot(Mb(:,1),Mb(:,2), 'bo', 'MarkerSize', 10, 'LineWidth', 3)
-    plot([20 90], [1 1]*Vt_Vi_b, '--', 'Color', [0 0.8 0.8], 'LineWidth', 4)
-    plot(omega_deg, Vt_opti/Vi_b, 'r', 'LineWidth', 3)
+    plot(Mb(:,1),Mb(:,2), 'bo', 'MarkerSize', 10, 'LineWidth', 2)
+    plot([20 90], [1 1]*Vt_Vi_b, 'k--', 'LineWidth', 2)
+    plot(omega_deg, Vt_opti/Vi_b, 'r', 'LineWidth', 2)
     lgd=legend('Digitized experimental data',...
-        'Theoretical value, if V_{pt}=V_{pi}',...
-        'Optimized ratio V_t/V_i, with V_{pt}= f(\omega)V_{pi}');
-    lgd.FontSize=14;
-    xlabel('\omega (deg)', 'FontSize', 18)
-    ylabel('V_t/V_i', 'FontSize', 18)
+        'Theoretical value',...
+        'Optimized ratio','Location','NorthEast');
+    xlabel('\omega (deg)','FontSize',20,'FontWeight','bold')
+    ylabel('V_t/V_i','FontSize',20,'FontWeight','bold')
     ylim([1 1.6])
+    set(gca,'FontSize',16,'FontWeight','bold','LineWidth',1.5)
     
 end
 

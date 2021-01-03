@@ -43,15 +43,15 @@ plotPolar(Mr,gamma_I,ny,2,xi,deltai);
 
 %adding legend and setting window limits
 legend('Incident CO2 polar','Transmited CH4 polar',...
-    'incident \xi','y axis','Reflected shock polar')
-title(['Polars for ' name_I '->'...
-         name_II ' refraction with \chi=' num2str(chi) ' and \omega='...
-        num2str(omega_deg) ' deg'])
-xlabel('\delta (deg)')
-ylabel('\xi')
+    'incident \xi','Reflected shock polar','Location','NorthEast')
+% title(['Polars for ' name_I '->'...
+%          name_II ' refraction with \chi=' num2str(chi) ' and \omega='...
+%         num2str(omega_deg) ' deg'])
+xlabel('\delta (deg)','FontSize',20,'FontWeight','bold')
+ylabel('\xi','FontSize',20,'FontWeight','bold')
 xi_lim_II=xiLim(Mt,gamma_II);
 %ylim([1,1.1*xi_lim_II])
 delta_max=deltaMax(Mt,gamma_II);
 %xlim(delta_max*180/pi*1.3*[-1,1])
-set(gca,'yscale','log')
+set(gca,'yscale','log','FontSize',16,'FontWeight','bold','LineWidth',1.5)
 hold off

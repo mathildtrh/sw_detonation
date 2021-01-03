@@ -7,14 +7,14 @@
 
 % if main_RRE.m has already been ran, chemical calculus is not needed
 % chemical_run has to be false
-chemical_run = true;
+chemical_run = false;
 
 disp("Running main_RRE.m ... It may take a while... ¯\_(ツ)_/¯");
 run main_RRE.m;
 disp("done");
 
 cd '/home/mathilde/Documents/PRe_Detonation/sw_detonation/chemistry/RRE_chemkin_calculus';
-mode = 3;
+mode = 2;
 
 %% mode = 1 : one particle // all mach numbers
 if mode == 1
@@ -37,22 +37,29 @@ end
 
 %% mode = 2 : one figure for each particle
 if mode == 2
+    tosave = zeros(50000, 2*nP*nM);
     for part = 1:1:nP
-        figure()
+        %figure()
         for mach = 1:1:nM
             folder = dirnames(nP*(mach-1)+part);
             lgd = strcat("Mach = ", num2str(mach_flow(mach)));
             [time,temp]=plotChemkinRRE(folder);
-            p = plot(time, temp, 'DisplayName', lgd);
-            legend('Location', 'east')
-            hold on
-            xlabel("Time (s)")
-            ylabel("Temperature (K)")
-            title ({"Evolution of temperature with time,"; ...
-                "for several incident shock strengths,"; ...
-                strcat("fluid particle : x = ", num2str(X(part)*100), "cm")});
+            len = length(time);
+            %p = plot(time, temp, 'DisplayName', lgd);
+            tosave(1:len,nP*(mach-1)+part)=time';
+            tosave(1:len,nP*nM+nP*(mach-1)+part)=temp';
+            %legend('Location', 'east')
+            %hold on
+            %xlabel("Time (s)")
+            %ylabel("Temperature (K)")
+            %title ({"Evolution of temperature with time,"; ...
+                %"for several incident shock strengths,"; ...
+                %strcat("fluid particle : x = ", num2str(X(part)*100), "cm")});
         end
     end
+    readme = "Particule 1, mach 1 : time en colonne 1, temp en colonne nP*nM +1";
+    cd('/home/mathilde/Documents/PRe_Detonation/sw_detonation/chemistry/RRE_chemkin_calculus');
+    save('ignition_RRE');
 end
 
 %% mode = 3 : one mach number // all particles

@@ -166,54 +166,7 @@ disp('RRR-BPR (Yann) done')
     
     
     
-% %% Computing RRR<->BPR limit in omega-xi plane: Mathilde's method
-%     
-% disp('RRR-BPR (Mathilde) running')
-%     nchis_M=100;nys_M=400;%nchis: number of points along chi axis;...
-%         %nys: nb of points along xi axis when computing polars
-% 
-%     %Principle: For each value of chi, the omega coordinate is computing by...
-%         %...doing a dichotomy with the isBeforeSfRRRToBPR, which determines if the...
-%         %... RRR->BPR transition has taken place at given chi and omega
-%     rrr_bpr_boundary_precision_M=.01; %omega precision, dichtomy termination...
-%         %...threshold
-% 
-%     chis_RRR_BPR_M=linspace(.42,1,nchis_M);%chi coordinates
-%     omegas_RRR_BPR_M=zeros(1,nchis_M);%pre-allocated omega coordinates
-%     for i=1:nchis_M
-%         omega_inf_M=0;omega_sup_M=90;%initial dichotomy bounds
-%         while omega_sup_M-omega_inf_M>rrr_bpr_boundary_precision_M %dichotomy...
-%             %...termination criteria
-% 
-%             %executing dichotomy, with lower bound having true value and...
-%                 %... upper bound having false value
-%             next_omega=(omega_sup_M+omega_inf_M)/2;
-%             if fromRRRToBPR(1/chis_RRR_BPR_M(i),pi/180*next_omega,gamma_CO2,...
-%                     gamma_CH4,mu_CO2,mu_CH4,nys_M)
-%                 omega_inf_M=next_omega;
-%             else
-%                 omega_sup_M=next_omega;
-%             end
-%         end
-%         omegas_RRR_BPR_M(i)=omega_inf_M; %adding omega coordinate in degrees to...
-%             %...preallocated array
-%     end
-% disp('RRR-BPR (Mathilde) done')
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
 %% Computing BPR<->FNR boundary
     %Principle: Computes omegas for which Mt=1 at different values of chi
@@ -375,7 +328,7 @@ for i=1:1:nchis_tnr_M
         break
     end
     omegas_FPR_TNR_2(i)=omega_inf_tnr;
-    disp(strcat("iteration n°", num2str(i), "omega critique =",num2str(omega_inf_tnr)))
+    %disp(strcat("iteration n°", num2str(i), "omega critique =",num2str(omega_inf_tnr)))
 end
 
 omegas_FPR_TNR_2=omegas_FPR_TNR_2(1,1:i-1);
@@ -383,35 +336,6 @@ chis_FPR_TNR_2=chis_FPR_TNR_2(1,1:i-1);
 disp("FPR-TNR (Mathilde) done")
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-%% Computing FPR<->TNR boundary --> Takayama & Zeng
-%Principle: calculates the angle of transition from FPR to TNR structure
-    %... described by Zeng and Takayama in "on the refraction of shock...
-    %... wave over a slow-fast gas interface". takayamaFNRtoTNR.m directly
-    %... returns the critical angle of transition for a certain pressure jump
-
-disp("FPR-TNR (Takayama) running")
-nchis_tnr_tak=100; %number of points on chi axis
-chis_FPR_TNR_tak=linspace(.34,1,nchis_tnr_tak); %chi values
-omegas_FPR_TNR_tak=zeros(1,nchis_tnr_tak);%pre-allocated omega array
-
-for i=1:nchis_tnr_tak
-    [omegas_FPR_TNR_tak(i),~,~,~]=takayamaFNRtoTNR(1/chis_FPR_TNR_tak(i),angle_gam,gamma_CO2,...
-    gamma_CH4,mu_CO2,mu_CH4);
-end
-disp("FPR-TNR (Takayama) done")
 
 
 
@@ -476,18 +400,18 @@ end
 % Ploting limits
 figure
 hold on
-plot(omegas_RRE_RRR,chis_RRE_RRR,'m--', 'LineWidth',2.5) %ploting RRE<->RRR limit
-plot(omegas_RRE(2:end-1),chis_RRE(2:end-1),'m', 'LineWidth',2.5) %ploting RRE<->... limit
-plot(omegas_RRR_BPR,chis_RRR_BPR,'r', 'LineWidth',2.5) %ploting RRR<->BPR limit Yann's method
-%plot(omegas_RRR_BPR_M,chis_RRR_BPR_M,'--r', 'LineWidth',2) %ploting RRR<->BPR limit Mathilde's method
-plot(omegas_BPR_FNR,chis_BPR_FNR,'g', 'LineWidth',2.5) %ploting BPR<->FNR lim
-plot(omegas_FPR_TNR,chis_FPR_TNR,'c', 'LineWidth',2.5) %ploting FPR<->TNR lim Yann's method
-plot(omegas_FPR_TNR_M,chis_FPR_TNR_M,'--c', 'LineWidth',2.5) %ploting FPR<->TNR lim Mathilde's method
-plot(omegas_FPR_TNR_2,chis_FPR_TNR_2,'-.c', 'LineWidth',2.5) %ploting FPR<->TNR lim Mathilde's method
+plot(omegas_RRE_RRR,chis_RRE_RRR,'k--','LineWidth',2,'MarkerSize',10) %ploting RRE<->RRR limit
+plot(omegas_RRE(2:end-1),chis_RRE(2:end-1),'k', 'LineWidth',2,'MarkerSize',10) %ploting RRE<->... limit
+plot(omegas_RRR_BPR,chis_RRR_BPR,'b','LineWidth',2,'MarkerSize',10) %ploting RRR<->BPR limit Yann's method
+%plot(omegas_RRR_BPR_M,chis_RRR_BPR_M,'--b', 'LineWidth',2) %ploting RRR<->BPR limit Mathilde's method
+plot(omegas_BPR_FNR,chis_BPR_FNR,'r','LineWidth',2,'MarkerSize',10) %ploting BPR<->FNR lim
+plot(omegas_FPR_TNR,chis_FPR_TNR,'g', 'LineWidth',2,'MarkerSize',10) %ploting FPR<->TNR lim Yann's method
+%plot(omegas_FPR_TNR_M,chis_FPR_TNR_M,'--g', 'LineWidth',2,'MarkerSize',10) %ploting FPR<->TNR lim Mathilde's method
+%plot(omegas_FPR_TNR_2,chis_FPR_TNR_2,'-.g', 'LineWidth',2,'MarkerSize',10) %ploting FPR<->TNR lim Mathilde's method
 %plot(omegas_FPR_TNR_tak,chis_FPR_TNR_tak,'-.c', 'LineWidth',2) %ploting FPR<->TNR lim Takayama's method
-plot(omegas_TNR_LSR(2:end),chis_TNR_LSR(2:end),'b', 'LineWidth',2.5)  %ploting TNR<->LSR lim
+plot(omegas_TNR_LSR(2:end),chis_TNR_LSR(2:end),'m', 'LineWidth',2,'MarkerSize',10)  %ploting TNR<->LSR lim
 
-cols=['m';'r';'g';'c';'b'];
+cols=['k';'b';'r';'g';'m'];
 for i=1:no_read_lines
     hold on
     no_read_points=points(2*i-1,1);
@@ -497,13 +421,38 @@ end
 
 vw_art_ang=[27,32.06,33.27,34.49,38,46];
 n_vw_art_ang=length(vw_art_ang);
-scatter(vw_art_ang,.78*ones(1,n_vw_art_ang),'<','LineWidth',2.5)
+plot(vw_art_ang,.78*ones(1,n_vw_art_ang),'<k','LineWidth',2,'MarkerSize',10)
 w_art_ang=[50.5,55];
 n_w_art_ang=length(w_art_ang);
-scatter(w_art_ang,.53*ones(1,n_w_art_ang),'^','LineWidth',2.5)
+plot(w_art_ang,.53*ones(1,n_w_art_ang),'^k','LineWidth',2,'MarkerSize',10)
 s_art_ang=[30,46,58];
 n_s_art_ang=length(s_art_ang);
-scatter(s_art_ang,.18*ones(1,n_s_art_ang),'>','LineWidth',2.5)
+plot(s_art_ang,.18*ones(1,n_s_art_ang),'>k','LineWidth',2,'MarkerSize',10)
+
+rre_ang = [27 32.06 33];
+rre_khi = [0.77 0.77 0.5];
+plot(rre_ang,rre_khi,'*k','LineWidth',2,'MarkerSize',10);
+
+rrr_ang = [33.27 34.49];
+rrr_khi = [0.77 0.77];
+plot(rrr_ang,rrr_khi,'*b','LineWidth',2,'MarkerSize',10);
+
+bpr_ang = [38 35 40];
+bpr_khi = [0.77 0.5 0.5];
+plot(bpr_ang,bpr_khi,'*r','LineWidth',2,'MarkerSize',10);
+
+fpr_ang = [45.4 41.2 53.7 48.7];
+fpr_khi = [0.77 0.5 0.77 0.5];
+plot(fpr_ang,fpr_khi,'*g','LineWidth',2,'MarkerSize',10);
+
+tnr_ang = [60.8 63 50.7 52.9 60.1];
+tnr_khi = [0.77 0.77 0.5 0.5 0.5];
+plot(tnr_ang,tnr_khi,'*m','LineWidth',2,'MarkerSize',10);
+
+lsr_ang = [68.1];
+lsr_khi = [0.5];
+plot(lsr_ang,lsr_khi,'ok','LineWidth',2,'MarkerSize',10);
+
 ltxt=sprintf(...
 "RRE->Intromission->RRR->Shock critical\n->BPR->FPR from Nourgaliev et al. fem sims");
 legends=legend("RRE<->RRR (analytical resolution)",...
@@ -516,13 +465,16 @@ legends=legend("RRE<->RRR (analytical resolution)",...
     "FPR<->TNR article boundary points",...
     "TNR<->LSR article boundary points",ltxt,...
     "TRR->TNR from Nourgaliev et al. sims",...
-    "RRE->BPR->TMR from Nourgaliev et al. fems sims");
+    "RRE->BPR->TMR from Nourgaliev et al. fems sims",...
+    "RRE CFD sims", "RRR CFD sims","BPR CFD sims","FPR CFD sims","TNR CFD sims","LSR CFD sims");
 
-legends.Location = 'eastoutside';
-legends.FontSize = 14;
-xlabel("\omega_i (deg)",'FontSize',18)
-ylabel("\chi", 'FontSize', 18)
-%title("Computed boundaries for CO2->CH4 refraction")
+legends.Location = 'NorthEast';
+set(gca,'FontSize',16,'FontWeight','bold','LineWidth',1.5)
+xlabel("\omega_i (deg)",'FontSize',20, 'FontWeight', 'bold')
+ylabel("\chi", 'FontSize', 20, 'FontWeight', 'bold')
 xlim([25,90])
 ylim([0,1])
 hold off
+saveas(gcf,('CO2_CH4_limits_shockwaves.eps'),'epsc2');
+
+save('CO2_CH4_limits_shockwaves.mat');

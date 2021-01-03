@@ -66,9 +66,10 @@ else
         u2 = M2*a2;                                                            % Velocity of flow
         
         %% Zone 4 (oblique shock from 5)
-        ny = 500;                                                              % Number of points used to calculate polars
+        ny = 1000; % Number of points used to calculate polars
+        ny2 = 10000;
         
-        [refl_xi, refl_delta] = getPolarMathilde(M2, gamma_I, ny, 2, xi_i, delta_1);   % Reflected shock polar : mode 2 = second deviation
+        [refl_xi, refl_delta] = getPolarMathilde(M2, gamma_I, ny2, 2, xi_i, delta_1);   % Reflected shock polar : mode 2 = second deviation
         [trans_xi, trans_delta] = getPolarMathilde(M5, gamma_II,ny,0);                 % Transmitted shock polar
         
 %         if ~ isreal(refl_delta)
@@ -84,29 +85,30 @@ else
             %return
         end
         
-%         % Plot polars if needed
-%         figure()
-%         [inc_xi, inc_delta]=getPolarMathilde(M1, gamma_I, ny, 0);
-%         [exp_xi, exp_delta] = getExpPolar(M2, gamma_I, ny, xi_i, delta_1);      
-%         inc = semilogy(inc_delta*180/pi,inc_xi,'r');
-%         hold on;
-%         exp = semilogy(exp_delta*180/pi,exp_xi,'c');
-%         trans = semilogy(trans_delta*180/pi,trans_xi,'g');
-%         refl = semilogy(refl_delta*180/pi,refl_xi,'y');
-%         %inter = semilogy([delta_t*180/pi],[xi_t],'+k', 'DisplayName','Intersection point : (\delta_t, \xi_t)');
-%         %inter.LineWidth = 2;
-%         inc.LineWidth = 2;
-%         exp.LineWidth = 2;
-%         trans.LineWidth = 2;
-%         refl.LineWidth = 2;
-%         xlabel('\omega (in deg)', 'FontSize',18)
-%         ylabel('\xi', 'FontSize', 18)
-%         lgd = legend('Incident shock','Reflected expansion','Transmitted shock','Reflected shock');
-%         lgd.Location = 'southwest';
-%         lgd.FontSize = 14;
-%         %grid on
-%         %grid minor
-%         %title({'Polar figure for RRR'; strcat('M1 = ', num2str(M1), '; Particle x = ', num2str(x*100))})
+        % Plot polars if needed
+        figure()
+        [inc_xi, inc_delta]=getPolarMathilde(M1, gamma_I, ny, 0);
+        [exp_xi, exp_delta] = getExpPolar(M2, gamma_I, ny, xi_i, delta_1);      
+        inc = semilogy(inc_delta*180/pi,inc_xi,'k');
+        hold on;
+        exp = semilogy(exp_delta*180/pi,exp_xi,'m');
+        trans = semilogy(trans_delta*180/pi,trans_xi,'b');
+        refl = semilogy(refl_delta*180/pi,refl_xi,'r');
+        %inter = semilogy([delta_t*180/pi],[xi_t],'+k', 'DisplayName','Intersection point : (\delta_t, \xi_t)');
+        %inter.LineWidth = 2;
+        inc.LineWidth = 2;
+        exp.LineWidth = 2;
+        trans.LineWidth = 2;
+        refl.LineWidth = 2;
+        xlabel('\omega (in deg)', 'FontSize',20,'FontWeight','bold')
+        ylabel('\xi', 'FontSize',20,'FontWeight','bold')
+        lgd = legend('Incident shock','Reflected expansion','Transmitted shock','Reflected shock');
+        lgd.Location = 'northeast';
+        set(gca,'FontSize',16,'FontWeight','bold','LineWidth',1.5)  
+
+        %grid on
+        %grid minor
+        %title({'Polar figure for RRR'; strcat('M1 = ', num2str(M1), '; Particle x = ', num2str(x*100))})
 
         P4 = xi_t*P5;                                                          % Pressure
         V4 = V5*xiToVolJump(xi_t, gamma_II);                                   % Spec. Volume

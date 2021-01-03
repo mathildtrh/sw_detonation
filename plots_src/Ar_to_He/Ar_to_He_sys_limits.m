@@ -1,10 +1,10 @@
-%%Computing boundaries between different refraction systems
+%% Computing boundaries between different refraction systems
     %%...for Ar->He slow-fast refraction  in...
     %%... interface angle- incident pressure jump plane.
 
 limits_computation_time=cputime;%initialising timer for computation time
 
-%gas parameters
+%% gas parameters
     %gas names
     name_I='Ar';
     name_II='He';
@@ -15,7 +15,7 @@ limits_computation_time=cputime;%initialising timer for computation time
     mu_I=40;
     mu_II=4;
 
-%Computing RRE<->... limit with graphical method:
+%% Computing RRE<->... limit with graphical method:
     %Principle: Doing a dichotomy on "isSfStrongRRE" function to find omega...
         %at given chi.
         %"isSfStrongRRE" uses graphical method to determine if...
@@ -42,7 +42,7 @@ limits_computation_time=cputime;%initialising timer for computation time
         omegas_RRE(i)=omega_inf_rre;
     end
  
-%Computing RRR<->BPR limit in omega-xi plane:
+%% Computing RRR<->BPR limit in omega-xi plane:
     nchis=100;nys=400;%nchis: number of points along chi axis;...
         %nys: nb of points along xi axis when computing polars
 
@@ -73,7 +73,7 @@ limits_computation_time=cputime;%initialising timer for computation time
             %...preallocated array
     end
 
-%Computing BPR<->NFR boundary
+%% Computing BPR<->NFR boundary
     %Principle: Computes omegas for which Mt=1 at different values of chi
     ny_BPR_NFR=100;%number of points on chi axis
     chis_BPR_NFR=linspace(0,1,ny_BPR_NFR);%chi coordinates
@@ -84,7 +84,7 @@ limits_computation_time=cputime;%initialising timer for computation time
             ,mu_I,mu_II);
     end
 
-%Computes TNR<->LSR limit
+%% Computes TNR<->LSR limit
     %Principle: Solves the Mt=1 equation
     npts=400; %number of points on chi axis
     chis_TNR_LSR=linspace(0,1,npts);
@@ -100,7 +100,7 @@ limits_computation_time=cputime;%initialising timer for computation time
         end
     end
 
-%Computing FPR<->TNR boundary
+%% Computing FPR<->TNR boundary
 %Principle: Graphically resolves the beta1=beta2 problem, as described...
     %... in Abd-El-Fattah, L. F. Henderson: Shock waves at a slow-fast...
     %... gas interface (1978), p88, figure 6b. The boundary is computed...
@@ -132,7 +132,7 @@ for i=1:nchis_tnr
     end
     omegai=omegai_inf_tnr;
     M1j=Mst*sqrt(gamma_II*mu_I/(gamma_I*mu_II));
-    ki=double(180/pi*(-asin(Msj/M1j)+asin(Msj/Msi*sin(pi/180*omegai))))
+    ki=double(180/pi*(-asin(Msj/M1j)+asin(Msj/Msi*sin(pi/180*omegai))));
     omega=ki+omegai;
     omegas_FPR_TNR(i)=omega;
 end
@@ -140,67 +140,61 @@ end
 limits_computation_time=cputime-limits_computation_time %stopping timer
 
 
-%Ploting limits like article
+%% Ploting limits like article
 figure
 hold on
-plot(omegas_RRE(2:end-1),chis_RRE(2:end-1),'LineWidth',2.5) %ploting RRE<->... limit
-hold on
-plot(omegas_RRR_BPR,chis_RRR_BPR,'LineWidth',2.5) %ploting RRR<->BPR limit
-hold on
-plot(omegas_BPR_NFR,chis_BPR_NFR,'LineWidth',2.5) %ploting BPR<->NFR lim
-hold on
-plot(omegas_FPR_TNR(2:end),chis_FPR_TNR(2:end),'LineWidth',2.5) %ploting FPR<->TNR lim
-hold on
-plot(omegas_TNR_LSR(2:end),chis_TNR_LSR(2:end),'LineWidth',2.5)  %ploting TNR<->LSR lim
+plot(omegas_RRE(2:end-1),chis_RRE(2:end-1), 'k','LineWidth',2,'MarkerSize',10) %ploting RRE<->... limit
+plot(omegas_RRR_BPR,chis_RRR_BPR,'b','LineWidth',2,'MarkerSize',10) %ploting RRR<->BPR limit
+plot(omegas_BPR_NFR,chis_BPR_NFR,'r','LineWidth',2,'MarkerSize',10) %ploting BPR<->NFR lim
+plot(omegas_FPR_TNR(2:end),chis_FPR_TNR(2:end),'g','LineWidth',2,'MarkerSize',10) %ploting FPR<->TNR lim
+plot(omegas_TNR_LSR(2:end),chis_TNR_LSR(2:end),'m','LineWidth',2,'MarkerSize',10)  %ploting TNR<->LSR lim
 
 Ar_to_He_sim_results_data;
-hold on
-scatter(RRE_sims(:,3),RRE_sims(:,1),'LineWidth',2.5)
-hold on
-scatter(BPR_sims(:,3),BPR_sims(:,1),'r','LineWidth',2.5)
-hold on
-scatter(FPR_sims(:,3),FPR_sims(:,1),'MarkerEdgeColor',[1,.5,0],'LineWidth',2.5)
-hold on
-scatter(TMR_sims(:,3),TMR_sims(:,1),'m','LineWidth',2.5)
+plot(RRE_sims(:,3),RRE_sims(:,1),'*k','LineWidth',2,'MarkerSize',10)
+plot(BPR_sims(:,3),BPR_sims(:,1),'*r','LineWidth',2,'MarkerSize',10)
+plot(FPR_sims(:,3),FPR_sims(:,1),'*g','LineWidth',2,'MarkerSize',10)
+plot(TMR_sims(:,3),TMR_sims(:,1),'*m','LineWidth',2,'MarkerSize',10)
 legends={"RRE->... (graphical resolution)",...
     "RRR<->BPR","BPR<->FNR","FPR<->TNR",...
     "TNR<->LSR","RRE sims","BPR sims",...
     "FPR sims","TNR sims"};
 
-legend(legends,'Location','eastoutside')
-xlabel("\omega (in deg)")
-ylabel("\chi")
-title(['Computed boundaries for slow-fast ' name_I '->' name_II ' refraction'])
+legend(legends,'Location','NorthEast')
+set(gca,'FontSize',16,'FontWeight','bold','LineWidth',1.5)
+xlabel("\omega_i (deg)",'FontSize',20, 'FontWeight', 'bold')
+ylabel("\chi", 'FontSize', 20, 'FontWeight', 'bold')
 xlim([15,90])
 ylim([0,1])
 hold off
+saveas(gcf,('Ar_He_limits_shockwaves.eps'),'epsc2');
 
+save('Ar_He_limits_shockwaves.mat');
 
-%Plotting limits with Mach instead of shock strength
-incident_Mach_shock_RRE=arrayfun(@xiToMach,1./chis_RRE(2:end-1));
-incident_Mach_shock_RRR_BPR=arrayfun(@xiToMach,1./chis_RRR_BPR)
-incident_Mach_shock_BPR_NFR=arrayfun(@xiToMach,1./chis_BPR_NFR)
-incident_Mach_shock_FPR_TNR=arrayfun(@xiToMach,1./chis_FPR_TNR)
-incident_Mach_shock_TNR_LSR=arrayfun(@xiToMach,1./chis_TNR_LSR(2:end))
-figure
-hold on
-plot(omegas_RRE(2:end-1),incident_Mach_shock_RRE) %ploting RRE<->... limit
-hold on
-plot(omegas_RRR_BPR,incident_Mach_shock_RRR_BPR) %ploting RRR<->BPR limit
-hold on
-plot(omegas_BPR_NFR,incident_Mach_shock_BPR_NFR) %ploting BPR<->NFR lim
-hold on
-plot(omegas_FPR_TNR(2:end),chis_FPR_TNR(2:end)) %ploting FPR<->TNR lim
-hold on
-plot(omegas_TNR_LSR(2:end),incident_Mach_shock_TNR_LSR)  %ploting TNR<->LSR lim
-
-legend(legends,'Location','eastoutside')
-xlabel("$\omega_i$ (deg)",'interpreter','latex')
-ylabel("Msh")
-title(['Computed boundaries for slow-fast ' name_I '->' name_II ' refraction'])
-xlim([15,90])
-%ylim([0,1])
-hold off
+% %Plotting limits with Mach instead of shock strength
+% incident_Mach_shock_RRE=arrayfun(@xiToMach,1./chis_RRE(2:end-1));
+% incident_Mach_shock_RRR_BPR=arrayfun(@xiToMach,1./chis_RRR_BPR)
+% incident_Mach_shock_BPR_NFR=arrayfun(@xiToMach,1./chis_BPR_NFR)
+% incident_Mach_shock_FPR_TNR=arrayfun(@xiToMach,1./chis_FPR_TNR)
+% incident_Mach_shock_TNR_LSR=arrayfun(@xiToMach,1./chis_TNR_LSR(2:end))
+% figure
+% hold on
+% plot(omegas_RRE(2:end-1),incident_Mach_shock_RRE) %ploting RRE<->... limit
+% hold on
+% plot(omegas_RRR_BPR,incident_Mach_shock_RRR_BPR) %ploting RRR<->BPR limit
+% hold on
+% plot(omegas_BPR_NFR,incident_Mach_shock_BPR_NFR) %ploting BPR<->NFR lim
+% hold on
+% plot(omegas_FPR_TNR(2:end),chis_FPR_TNR(2:end)) %ploting FPR<->TNR lim
+% hold on
+% plot(omegas_TNR_LSR(2:end),incident_Mach_shock_TNR_LSR)  %ploting TNR<->LSR lim
+% 
+% legend(legends,'Location','eastoutside')
+% xlabel("$\omega_i$ (deg)",'interpreter','latex')
+% ylabel("Msh")
+% title(['Computed boundaries for slow-fast ' name_I '->' name_II ' refraction'])
+% xlim([15,90])
+% %ylim([0,1])
+% hold off
 
 function val=xiToMach(xi)
     val=sqrt(xiToSqMach(xi,gamma_I,pi/2));

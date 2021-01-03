@@ -48,9 +48,13 @@ if mode ~= 2
 end
 
 %[M1,gamma]
-xi_log_plot_step=(xi_lim/xi_min)^(1/ny);
-xi_axis=xi_min*xi_log_plot_step.^(0:ny);%log-scale xi points
-xi_axis(end)=xi_lim;
+% xi_log_plot_step=(xi_lim/xi_min)^(1/ny);
+% xi_axis=xi_min*xi_log_plot_step.^(0:ny);%log-scale xi points
+% xi_axis(end)=xi_lim;
+
+xi_axis = logspace(log10(xi_min), log10(xi_lim), ny+1);
+
+%xi_axis = linspace(xi_min, xi_lim, ny+1);
 
 %polar calculation
 delta_pos=zeros(1,ny+1);
