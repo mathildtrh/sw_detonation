@@ -131,10 +131,7 @@ for i=1:nchis_tnr
         end
     end
     omegai=omegai_inf_tnr;
-    M1j=Mst*sqrt(gamma_II*mu_I/(gamma_I*mu_II));
-    ki=double(180/pi*(-asin(Msj/M1j)+asin(Msj/Msi*sin(pi/180*omegai))));
-    omega=ki+omegai;
-    omegas_FPR_TNR(i)=omega;
+    omegas_FPR_TNR(i)=omegai;
 end
 
 limits_computation_time=cputime-limits_computation_time %stopping timer
@@ -143,11 +140,15 @@ limits_computation_time=cputime-limits_computation_time %stopping timer
 %% Ploting limits like article
 figure
 hold on
-plot(omegas_RRE(2:end-1),chis_RRE(2:end-1), 'k','LineWidth',2,'MarkerSize',10) %ploting RRE<->... limit
-plot(omegas_RRR_BPR,chis_RRR_BPR,'b','LineWidth',2,'MarkerSize',10) %ploting RRR<->BPR limit
-plot(omegas_BPR_NFR,chis_BPR_NFR,'r','LineWidth',2,'MarkerSize',10) %ploting BPR<->NFR lim
-plot(omegas_FPR_TNR(2:end),chis_FPR_TNR(2:end),'g','LineWidth',2,'MarkerSize',10) %ploting FPR<->TNR lim
-plot(omegas_TNR_LSR(2:end),chis_TNR_LSR(2:end),'m','LineWidth',2,'MarkerSize',10)  %ploting TNR<->LSR lim
+plot(omegas_RRE(2:end-1),chis_RRE(2:end-1)) %ploting RRE<->... limit
+hold on
+plot(omegas_RRR_BPR,chis_RRR_BPR) %ploting RRR<->BPR limit
+hold on
+plot(omegas_BPR_NFR,chis_BPR_NFR) %ploting BPR<->NFR lim
+hold on
+plot(omegas_FPR_TNR(10:end),chis_FPR_TNR(10:end)) %ploting FPR<->TNR lim
+hold on
+plot(omegas_TNR_LSR(2:end),chis_TNR_LSR(2:end))  %ploting TNR<->LSR lim
 
 Ar_to_He_sim_results_data;
 plot(RRE_sims(:,3),RRE_sims(:,1),'*k','LineWidth',2,'MarkerSize',10)
