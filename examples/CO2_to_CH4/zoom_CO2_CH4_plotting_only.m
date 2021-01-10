@@ -1,7 +1,8 @@
 %% This script is designed to fastly get the CO2/CH4 regime diagram
 % by loading the pre-calculated limits
 
-load('sw_detonation/examples/CO2_to_CH4/CO2_CH4_poly_correction.mat')
+load('sw_detonation/examples/CO2_to_CH4/CO2_CH4_1st_correction.mat')
+load('sw_detonation/examples/CO2_to_CH4/CO2_CH4_limits_shockwaves.mat')
 
 figure
 hold on
@@ -11,7 +12,7 @@ hold on
 
 plot(omegas_FPR_TNR,chis_FPR_TNR,'g', 'LineWidth',2,'MarkerSize',10, "DisplayName","FPR<->TNR") %ploting FPR<->TNR lim Yann's method
 plot(omegas_FPR_TNR_M,chis_FPR_TNR_M,'--g', 'LineWidth',2,'MarkerSize',10, "DisplayName","FPR<->TNR (constant coefficient)") %ploting FPR<->TNR lim Mathilde's method
-%plot(omegas_FPR_TNR_2,chis_FPR_TNR_2,'-.g', 'LineWidth',2,'MarkerSize',10, "DisplayName","FPR<->TNR (fitting of experimental data)") %ploting FPR<->TNR lim Mathilde's method
+plot(omegas_FPR_TNR_2,chis_FPR_TNR_2,'-.g', 'LineWidth',2,'MarkerSize',10, "DisplayName","FPR<->TNR (fitting of experimental data)") %ploting FPR<->TNR lim Mathilde's method
 plot(omegas_TNR_LSR(2:end),chis_TNR_LSR(2:end),'m', 'LineWidth',2,'MarkerSize',10, "DisplayName","TNR<->LSR")  %ploting TNR<->LSR lim
 
 cols=['k';'b';'r';'g';'m'];

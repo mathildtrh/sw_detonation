@@ -13,7 +13,8 @@
 ny=200;
 %Params of figure 6a of slow-fast gas interface
 chi=.78;
-omega_deg=58.71;
+omega_deg=40; %FPR case
+%omega_deg=58.71; %limit FPR-to-TNR
 xi_i=1/chi;
 omega_rad=pi/180*omega_deg;
 
