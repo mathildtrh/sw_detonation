@@ -190,32 +190,32 @@ plot(cp_tnr_ang,cp_tnr_khi,'*m','LineWidth',2,'MarkerSize',10);
 
 %Points of interest for curved-curved case
 cc_rre_ang = [9.9 16.3 5.3 15.8 4.3];
-cc_rre_khi = [0.8092 0.8092 0.4161 0.4161 0.2290];
+cc_rre_khi = [0.8092 0.8092 0.4161 0.4161 0.4161 0.2290 0.2290];
 plot(cc_rre_ang,cc_rre_khi,'+k','LineWidth',2,'MarkerSize',10);
 
-cc_rrr_ang = [21.3 22.2 22.5 ];
-cc_rrr_khi = [0.8092 0.4161 0.2290];
+cc_rrr_ang = [37.4];
+cc_rrr_khi = [0.8092];
 plot(cc_rrr_ang,cc_rrr_khi,'+b','LineWidth',2,'MarkerSize',10);
 
-cc_bpr_ang = [25.4 28.3];
-cc_bpr_khi = [0.8092 0.2290];
+cc_bpr_ang = [42.1 40.4 46.2 43.5 49.6];
+cc_bpr_khi = [0.8092 0.4161 0.4161 0.2290 0.2290];
 plot(cc_bpr_ang,cc_bpr_khi,'+r','LineWidth',2,'MarkerSize',10);
 
-cc_fpr_ang = [30.3 34.9 27.8];
-cc_fpr_khi = [0.8092 0.8092 0.4161];
+cc_fpr_ang = [46.2 50.6 64.4 85.4 52.0 57.2];
+cc_fpr_khi = [0.8092 0.8092 0.8092 0.8092 0.4161 0.4161];
 plot(cc_fpr_ang,cc_fpr_khi,'+g','LineWidth',2,'MarkerSize',10);
 
-cc_tnr_ang = [33.6 39.1 44.7 33.8 39.3];
-cc_tnr_khi = [0.4161 0.4161 0.4161 0.2290 0.2290];
+cc_tnr_ang = [62.8 56.4];
+cc_tnr_khi = [0.4161 0.2290];
 plot(cc_tnr_ang,cc_tnr_khi,'+m','LineWidth',2,'MarkerSize',10);
 %%%%%%%%%%%%
 
-% legends=legend("RRE->... (graphical resolution)",...
-%     "RRR<->BPR","BPR<->FNR","FPR<->TNR","TNR<->LSR",...
-%     "RRE CFD sims", "RRR CFD sims","BPR CFD sims","FPR CFD sims","TNR CFD sims");
-% 
-% legends.Location = 'NorthEast';
-% set(gca,'FontSize',16,'FontWeight','bold','LineWidth',1.5)
+legends=legend("RRE->... (graphical resolution)",...
+    "RRR<->BPR","BPR<->FNR","FPR<->TNR","TNR<->LSR",...
+    "RRE CFD sims", "RRR CFD sims","BPR CFD sims","FPR CFD sims","TNR CFD sims");
+
+legends.Location = 'NorthEast';
+set(gca,'FontSize',16,'FontWeight','bold','LineWidth',1.5)
 xlabel("\omega_i (deg)",'FontSize',20, 'FontWeight', 'bold')
 ylabel("\chi", 'FontSize', 20, 'FontWeight', 'bold')
 xlim([25,90])
